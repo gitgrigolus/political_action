@@ -1,0 +1,497 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\usepackage{indentfirst}
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\setotherlanguages{russian}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfonttt}{Times New Roman}
+\usepackage{float}
+\usepackage{float} \floatplacement{figure}{H}
+\newcommand{\beginsupplement}{\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Guilt, shame, and anti-war action in an authoritarian country at war},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Guilt, shame, and anti-war action in an authoritarian country at war}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\vspace{10mm}
+\begin{center}
+Lusine Grigoryan$^{1}$, Vladimir Ponizovskiy$^{2}$, Marie Isabelle Wießflog$^{2}$, Evgeny Osin$^{3}$,$^{4}$, and Brian Lickel$^{5}$
+\vspace{30mm}
+
+$^{1}$ Department of Psychology, University of York
+\vspace{5mm}
+
+$^{2}$ Department of Psychology, Ruhr University Bochum
+\vspace{5mm}
+
+$^{3}$ LINP2 Lab, Université Paris Nanterre
+\vspace{5mm}
+
+$^{4}$ School of Psychology, HSE University
+\vspace{5mm}
+
+$^{5}$ Department of Psychological and Brain Sciences, University of Massachusetts Amherst
+\vspace{50mm}
+
+\end{center}
+
+\noindent We have no known conflict of interest to disclose.
+
+\noindent All study materials, data, and code can be found on the OSF platform: \url{https://osf.io/4pd2v/?view_only=23597fdc19424706818a72fc0df43009}
+
+\noindent Correspondence concerning this article should be addressed to Lusine Grigoryan, University of York,
+
+\noindent Psychology Building, Heslington, York YO10 5NA, UK. Email: \href{mailto:lusine.grigoryan@york.ac.uk}{\nolinkurl{lusine.grigoryan@york.ac.uk}}
+
+\pagebreak
+
+\hypertarget{abstract}{%
+\section*{Abstract}\label{abstract}}
+\addcontentsline{toc}{section}{Abstract}
+
+Studies of group-based guilt and shame show that these emotions can facilitate intergroup reconciliation. However, most of these studies are conducted in democratic countries and usually on past, not present events. We set out to investigate the role of group-based guilt and shame in collective action in an authoritarian country at war. We asked more than 1000 Russians living in Russia, a sample representative of the country's population by gender and age, about their experiences of group-based guilt and shame in relation to Russia's invasion of Ukraine and their past and future anti-war political actions. The study was guided by three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Democratic values, not political efficacy, was the most robust predictor of group-based guilt and shame. Only moral shame, but not guilt or image shame predicted past and future anti-war action. Whereas attitude towards the war and moral shame predicted whether or not participants intend to engage in political action, negative emotions predicted the strength of these intentions. We highlight the gaps in the study of collective action and the need for more evidence from non-democratic contexts.
+
+\vspace{5mm}
+
+\emph{Keywords}: group-based guilt, moral shame, image shame, collective action, Russia-Ukraine war, authoritarianism
+
+\hypertarget{guilt-shame-and-anti-war-action-in-an-authoritarian-country-at-war}{%
+\section*{Guilt, shame, and anti-war action in an authoritarian country at war}\label{guilt-shame-and-anti-war-action-in-an-authoritarian-country-at-war}}
+\addcontentsline{toc}{section}{Guilt, shame, and anti-war action in an authoritarian country at war}
+
+On February 24, 2022, the country with the biggest nuclear warhead inventory in the world, Russia, invaded the neighboring Ukraine. Although the Russia-Ukraine war started in 2014 with the occupation of Crimea, Russian officials consistently denied their involvement in the region. Eight years later, to the surprise of most analysts and pundits, Russia openly invaded Ukraine on four fronts: North (Kyiv), North-East (Kharkiv), South-East (Donetsk and Luhansk), and South (Crimea). The official ideological narrative supporting the invasion was provided in a televised speech by Vladimir Putin preceding the invasion by mere minutes. In this speech, Putin falsely claimed that Ukraine is governed by a group of neo-Nazis who hold the population hostage and persecute the Russian speakers in the country. The announced goals of this ``special military operation'' (the use of the word ``war'' soon after will be criminalized in Russia) were the ``denazification'' and ``demilitarization'' of Ukraine.
+
+In the first days following the invasion, thousands of Russians take to the streets to protest. However, nearly 15.000 people are detained in the first weeks following the invasion (OVD-Info, 2022) and the street protests die down quickly. New laws are introduced regularly to further supress protest, among them the law about the ``discreditation of the Russian armed forces'', which essentially prohibits any anti-war statements (Eckel, 2022). After the introduction of this law, the few remaining independent media outlets either stop covering the war or leave the country (The Moscow Times, 2022).
+
+Against the backdrop of the reports of war crimes committed by the Russian armed forces in Ukraine and the repression of all dissent in Russia, the discussions among the well-educated Russians, many of whom left the country, often revolve around the topics of collective responsibility, guilt, and shame (e.g., Grigoryan and Ponizovskiy, 2022; Treus, 2022). As these discussions take shape, it is becoming clear that the majority view, even among the Russian ``intelligentsia'', is that feelings of guilt and shame are inappropriate or even harmful (Kynev, 2022). For example, in a series of interviews with prominent Russian intellectuals and artists, Ekaterina Gordeeva, a journalist with more than 1.5 million subscribers on YouTube, asks each of her guests whether they feel guilt or shame for what is happening in the country; with very few exceptions, the answer is ``no'' (Gordeeva, 2022). The push-back against the idea of feeling guilt or shame for what your country is doing is so strong that soon a new hashtag \#IamNotAshamed (\#МнеНеСтыдно) becomes popular.
+
+Research on group-based guilt and shame and collective action has been predominantly carried out in Western democracies. Although there is strong evidence that experiencing these emotions can motivate people to engage in collective action and support intergroup reconciliation efforts (Hakim et al., 2021; Lickel et al., 2011), research on preconditions for experiencing these emotions and on the power of these emotions to motivate collective action in authoritarian regimes is lacking. Is the sense that you have some control over the political events in your country a necessary precondition for feeling group-based guilt and shame? Are these feelings relevant in authoritarian regimes? Can they motivate behavior in such contexts? We set out to address these questions in Russia, an authoritarian country at war.
+
+In this paper, we present the results of a large-scale, preregistered online survey of Russian population conducted in August 2022. We aim to address the following three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes?
+
+\hypertarget{theoretical-background}{%
+\section*{Theoretical background}\label{theoretical-background}}
+\addcontentsline{toc}{section}{Theoretical background}
+
+\allsectionsfont{\raggedright}
+
+\hypertarget{group-based-guilt-and-shame}{%
+\subsection*{Group-based guilt and shame}\label{group-based-guilt-and-shame}}
+\addcontentsline{toc}{subsection}{Group-based guilt and shame}
+
+Group-based emotions are emotions elicited by actions of fellow ingroup members (Iyer and Leach, 2008). Social groups are necessary for human survival and both positive and negative group-based emotions can help regulate the behavior of group members, promoting desirable (e.g., through pride) and inhibiting undesirable (e.g., through guilt) behaviors. The function of group-based guilt and shame is to ensure good conduct of group members by signaling instances of norm violations and motivating restorative action (Lickel et al., 2011).
+
+Although the emotions of guilt and shame share many similarities (Smith and Ellsworth, 1985) and are often experienced simultaneously (Schmader and Lickel, 2006), they also have some important differences in appraisals and motivations. The feeling of shame is likely to occur when the ingroup member's negative actions reflect poorly on the group identity itself, whereas the feeling of guilt -- when one feels collective responsibility for the negative actions of group members. As a result, shame is expected to motivate avoidant behaviors (hiding, distancing), whereas guilt is expected to motivate approach behaviors (repairing, restoring) (Lickel et al., 2011; Tangney et al., 2007).
+
+This prediction that guilt would motivate reconciliatory behavior, whereas shame would motivate avoidance is not well supported by the empirical evidence available so far. A recent meta-analysis of group-based emotions ((Hakim et al., 2021), 101 effect sizes, 58 samples, N = 10,305) found that guilt, shame, and anger are equally predictive of support for reparations, with a strong average effect size of r = .44 and no significant differences between emotions. Furthermore, the distinction between moral shame and image shame (Allpress et al., 2010; Rees et al., 2013) helps explain which elements of shame are predictive of reconciliatory behaviors and which are predictive of avoidant behaviors. This distinction is made based on different appraisals that the feeling of shame can be accompanied with: we feel moral shame when the group members' behavior violates important moral standards or values of the group, and we feel image shame when the group members' behavior tarnishes the ingroup's reputation (Rees et al., 2013). Studies that make the distinction between moral shame and image shame find that moral shame is predictive of reconciliatory behaviors on par or more strongly than guilt, whereas image shame is predictive of distancing and avoidance (Allpress et al., 2014; Allpress et al., 2010; Grigoryan and Efremova, 2017; Nooitgedagt et al., 2021; Rees et al., 2013). We therefore expect that moral shame and guilt, but not image shame, will predict a stronger intention to act against the war in Russia (H1).
+
+\hypertarget{acknowledgment-of-responsibility-as-a-precondition-for-experiencing-guilt-and-shame}{%
+\subsection*{Acknowledgment of responsibility as a precondition for experiencing guilt and shame}\label{acknowledgment-of-responsibility-as-a-precondition-for-experiencing-guilt-and-shame}}
+\addcontentsline{toc}{subsection}{Acknowledgment of responsibility as a precondition for experiencing guilt and shame}
+
+Although rarely studied, the acknowledgment of collective responsibility for the ingroup's wrongdoings is a necessary precondition for experiencing group-based guilt and shame. In a series of experiments, Cehajić-Clancy et al. (2011) showed that guilt mediates the effect of an intervention designed to increase acknowledgment of responsibility for the ingroup's wrongdoing and support for reparations. Consistent with this finding, a recent set of studies showed that beliefs of group malleability shape experiences of guilt and shame (Weiss-Klayman et al., 2020): participants who believed that groups can change and those who thought that others believe that groups can change (meta-beliefs) showed higher levels of guilt and shame.
+
+Applying these findings to international conflicts where the ingroup is the country, we argue that experiences of group-based guilt and shame are conditional upon beliefs that citizens have control over and responsibility for their governments' decisions. This belief would form the foundation for acknowledgment of collective responsibility, which would then translate into the feelings of group-based guilt and shame and, consequently, anti-war or reconciliatory behavior. We expect that the higher the belief that citizens have control over political decisions in their country, the stronger are the feelings of guilt and shame (H2). We test this prediction by measuring different constructs that tap into the notion of political control and responsibility: political alienation (Olsen, 1969), political cynicism (Pattyn et al., 2012), democratic values (Canetti-Nisim and Beit-Hallahmi, 2007), and political responsibility.
+
+\hypertarget{collective-action-in-an-authoritarian-state}{%
+\subsection*{Collective action in an authoritarian state}\label{collective-action-in-an-authoritarian-state}}
+\addcontentsline{toc}{subsection}{Collective action in an authoritarian state}
+
+The integrative social identity model of collective action (SIMCA) -- perhaps the most comprehensive and widely used model of collective action in psychology -- identifies three key components of collective action: perceived injustice, identity, and efficacy (van Zomeren et al., 2008). In a meta-analysis of more than 180 independent samples, van Zomeren et al. (2008) find that each of these three components uniquely predict collective action, with similar effect sizes. A recent extension adds moral beliefs as a key component of the model (van Zomeren et al., 2018). However, most studies of collective action have been conducted in democratic countries, where the cost of political participation is not that high. Moreover, most of these studies focus on political movements related to minority rights and social justice and the generalizability of these findings to political movements aimed at regime change in authoritarian states has not been well studied.
+
+In a series of studies in five non-democratic states (Egypt and Turkey in 2013, Russia, Ukraine, and Hong Kong in 2014), Ayanian and colleagues (Ayanian et al., 2021; Ayanian and Tausch, 2016) show how perceptions of risk in repressive contexts can have counter-intuitive effects on willingness to participate in collective action. While perceived risk can quell collective action through increased fear, it can also spur resistance through increased outrage and heightened feelings of moral obligation. Contributing to this line of research, we will test how guilt and moral shame compare to other predictors of collective action and whether they are predictive of anti-government action in an authoritarian state over and above other emotions and attitude (RQ1).
+
+\allsectionsfont{\centering}
+
+\hypertarget{method}{%
+\section*{Method}\label{method}}
+\addcontentsline{toc}{section}{Method}
+
+All study materials, including the questionnaire, data, and code, can be found on the Open Science Platform: \url{https://osf.io/4pd2v/?view_only=23597fdc19424706818a72fc0df43009}. The preregistration protocol is available at \url{https://aspredicted.org/SGV_SBD}.
+
+\allsectionsfont{\raggedright}
+
+\hypertarget{sample-and-procedure}{%
+\section*{Sample and procedure}\label{sample-and-procedure}}
+\addcontentsline{toc}{section}{Sample and procedure}
+
+We collected a quota sample, representative of the Russian population by gender and age. Participants were recruited via the online crowdsourcing platform Yandex Toloka in August 2022. This was the only feasible option to collect fully anonymized data in Russia, which was crucial, given that the repercussions for expressing opposition to the war can be severe. Participants received \$ 0.5 (30 RUB) for their participation. A total of N=1011 participants gave full informed consent to participate in the study. Thirty participants were excluded since they dropped out of the study before completion, and another eight were excluded for failing more than one out of three attention checks. The effective sample size is N=973.
+
+The sample was balanced by gender (49.9\% women, 49.6\% men, 0.4\% non-binary or no response) and age cohort (18 to 88 years old, M=38, SD=13). About 51\% of the sample had a tertiary degree (BA or higher) and about 55\% said they had lower than average income. All participants were Russian citizens and 99.6\% lived in Russia at the time of data collection. Most (91\%) identified as ethnic Russian, 3\% as Tatar, about 1\% as Ukrainian, Chuvash, and Bashkir each, and the remaining 3\% chose the ``other'' category.
+
+\hypertarget{measures}{%
+\subsection*{Measures}\label{measures}}
+\addcontentsline{toc}{subsection}{Measures}
+
+\textbf{\emph{Anti-war actions}}. We measured past behavior by asking how many of the eight political actions listed did the participant do to oppose the war in Ukraine (e.g., ``signing a petition'', ``participating in a demonstration'', etc.). The responses ranged from 0 to 8, with 82\% of participants reporting zero actions. Behavioral intention to participate in any political action against the war was measured with 3 items (``I want to/intend to/plan to take part in political action against the war in Ukraine''), on a 5-point scale from 1 -- ` Completely disagree' to 5 -- `Completely agree' (\(\alpha\) = .95; 73\% of participants had a mean score of 1). Finally, we asked about the probability that the person will take any political action, from 1 -- highly improbable, 10 -- (almost) certainly (69\% answered `1').
+
+\textbf{\emph{Attitude towards the war}} was measured with 3 items, on a bipolar 5-pt Osgood-style scale: ``The special military operation in Ukraine is\ldots{}'': bad-good, harmful-beneficial, useless-useful (\(\alpha\) = .90, M = 2.88, SD = 1.29).
+
+\textbf{\emph{Political beliefs.}} We used four different scales to capture participants' beliefs about political agency and the role of democracy. All items were assessed on a 7-point scale from 1 -- `Absolutely disagree' to 7 -- `Absolutely agree'.
+
+\emph{Support for democratic values} was measured with a 6-item scale from Canetti-Nisim and Beit-Hallahmi (2007). Example item: ``Every citizen has the right to take his convictions to the street if necessary'' (\(\alpha\) = .69).
+
+\emph{Political alienation} was measured with four items from Olsen (1969). Example item: ``There is not much that people like me can do to influence actions of the government'' (\(\alpha\) = .73).
+
+\emph{Political cynicism} was measured with eight items from Pattyn et al. (2012). Example item: ``Politicians pretend to care more about people than they really do'' (\(\alpha\) = .91).
+
+\emph{Political responsibility.} We formulated five items aimed at capturing participants' beliefs about political responsibility: ``The government will face difficulties if it tries to do something that most people in the country do not agree with'', ``Participation in political life is a responsibility of every person before themselves and their fellow countrymen'', ``If I see that the country is going in the wrong direction, it is my duty to get my voice heard by the government'', ``The citizens of Russia are accountable for the actions of their government'', ``If the majority of the citizens are against some decision made by the government, they can influence that decision'' (\(\alpha\) = .71).
+
+Since the constructs of political alienation, cynicism, and responsibility are closely related and none of these scales were used in a Russian sample before, we conducted a confirmatory factor analysis (CFA) to test whether the 3-factor structure could be confirmed. The 3-factor model showed unsatisfactory fit to the data (CFI = 0.803, RMSEA = 0.128, SRMR = 0.11). An exploratory factor analysis suggested that a 4-factor model, with the political cynicism scale split in two, fits the data better. CFA confirmed this result: a model with 4 factors showed a good fit to the data (CFI = 0.947, RMSEA = 0.068, SRMR = 0.068). This modified model includes the political responsibility factor with 5 items, political alienation factor with 3 items (the item ``I believe public officials don't care much what people like me think'' was removed since it loaded on both political alienation and cynicism subscales), and two facets of political cynicism: ``politicians are evil'' (4 items, e.g., ``Politicians are only interested in getting and maintaining power'') and ``politics is evil'' (4 items, e.g., ``No man can hope to stay honest once he enters politics'').
+
+\textbf{\emph{Positive and negative emotions.}} We measured emotions that participants experience when thinking about the war using the short version of the Positive and Negative Affect Scale (Watson et al., 1988). Twelve emotions (fear, joy, sadness, hope, anger, enthusiasm, disgust, pride, contempt, depression, guilt, and shame) were rated on a 5-pt scale (1 -- `do not experience at all' to 5 -- `extremely'). If participants answered 2 or higher to the guilt and shame questions, they were shown questionnaires for group-based guilt and/or shame, respectively (we took this precaution because of negative prior experiences when using these measures in Russia; see Grigoryan et al. (2018); Grigoryan and Efremova (2017), for details). We tested the two-factor structure of the PANAS scale (positive and negative affect, excluding guilt and shame) using CFA and found the fit to be unsatisfactory (CFI = 0.862, RMSEA = 0.146, SRMR = 0.08). A 3-factor structure with positive emotions (joy, hope, enthusiasm), negative dominant emotions (anger, disgust, contempt) and negative submissive emotions (fear, sadness, depression) showed a satisfactory fit to the data (CFI = 0.916, RMSEA = 0.117, SRMR = 0.066) (see Mehrabian, 1980), for the distinction between dominant and submissive emotions).
+
+\textbf{\emph{Group-based guilt and shame.}} We used the measures of group-based guilt, image shame, and moral shame developed by Rees et al. (2013), Russian adaptation by Grigoryan and Efremova (2017). All items are answered on a 5-pt scale from 1 -- `Completely disagree' to 5 -- `Completely agree'. Guilt was measured with 3 items (e.g., ``I feel guilty for the manner in which Ukrainian people have been treated by Russians'', \(\alpha\) = .89), image shame with 5 items (``I feel ashamed when I realize that other countries might think of Russia negatively because of our involvement in Ukraine'', \(\alpha\) = .94), and moral shame with 4 items (``I feel ashamed because Russia's actions with regard to Ukraine have been immoral'', \(\alpha\) = .93). All missing values were replaced with zeros, since participants who didn't see the scale were the ones who reported no feelings of guilt or shame in the PANAS.
+
+\allsectionsfont{\centering}
+
+\hypertarget{results}{%
+\section*{Results}\label{results}}
+\addcontentsline{toc}{section}{Results}
+
+We will present the results in three parts, each addressing one of the three research questions: (1) are feelings of group-based guilt and shame conditional upon beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Following the preregistration protocol, we use linear regression models to address these questions. However, since the outcome variables in all cases have zero-inflated distributions (most participants said that they do not feel guilt or shame and did not and are not planning to take any political action against the war), we tested the robustness of the findings using zero-inflated negative binomial regressions. All additional analyses are presented in the Supplementary Materials.
+
+\allsectionsfont{\raggedright}
+
+\hypertarget{part-1.-are-feelings-of-group-based-guilt-and-shame-conditional-upon-beliefs-that-people-can-influence-the-actions-of-their-governments}{%
+\subsection*{Part 1. Are feelings of group-based guilt and shame conditional upon beliefs that people can influence the actions of their governments?}\label{part-1.-are-feelings-of-group-based-guilt-and-shame-conditional-upon-beliefs-that-people-can-influence-the-actions-of-their-governments}}
+\addcontentsline{toc}{subsection}{Part 1. Are feelings of group-based guilt and shame conditional upon beliefs that people can influence the actions of their governments?}
+
+In a series of linear regressions, we tested whether political beliefs predict experiences of group-based shame and guilt. As Table 1 indicates, participants with stronger democratic values and those with stronger belief that politicians are evil reported stronger experiences of group-based guilt, moral shame, and image shame. The effect size of democratic values was at least twice as strong as that of political cynicism (\(\beta\) \(\approx\) .40 vs.~\(\beta\) \(\approx\) .15). Political responsibility beliefs also predicted guilt, albeit weakly. We ran a path model to account for correlations between the different political beliefs and between the three emotions (Table S1, SM). The results were essentially identical. Overall, political beliefs explained 22-26\% of variance in experiences of group-based guilt and shame and the endorsement of democratic values was the main driver of these experiences. The results of the zero-inflated models (Table S2, SM) were essentially identical when predicting strength of the emotions. Only democratic values predicted the occurrence of emotions (zero vs.~non-zero scores).
+
+\hypertarget{table-1}{%
+\subsection*{Table 1}\label{table-1}}
+\addcontentsline{toc}{subsection}{Table 1}
+
+Predicting group-based guilt and shame from political beliefs
+
+\begin{table}[H]
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}{llccccccccccc}
+\toprule
+\multicolumn{1}{c}{} & \multicolumn{4}{c}{Moral Shame} & \multicolumn{4}{c}{Image Shame} & \multicolumn{4}{c}{Guilt} \\
+\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9} \cmidrule(l{3pt}r{3pt}){10-13}
+  & $\beta$ & $b$ & $SE$ & $p$ & $\beta$ & $b$ & $SE$ & $p$ & $\beta$ & $b$ & $SE$ & $p$\\
+\midrule
+Intercept & 0 & -2.89 & 0.32 & <0.001 & 0 & -2.8500 & 0.34 & <0.001 & 0 & -2.930 & 0.34 & <0.001\\
+Democratic Values & 0.41 & 0.64 & 0.05 & <0.001 & 0.4 & 0.6400 & 0.05 & <0.001 & 0.41 & 0.650 & 0.05 & <0.001\\
+Political Cynicism (politicians) & 0.18 & 0.20 & 0.05 & <0.001 & 0.16 & 0.1800 & 0.05 & <0.001 & 0.09 & 0.100 & 0.05 & 0.039\\
+Political Cynicism (politics) & -0.05 & -0.05 & 0.04 & 0.189 & -0.03 & -0.0300 & 0.04 & 0.458 & -0.03 & -0.030 & 0.04 & 0.455\\
+Political Alienation & -0.05 & -0.06 & 0.04 & 0.122 & -0.03 & -0.0400 & 0.04 & 0.380 & 0.01 & 0.020 & 0.04 & 0.663\\
+\addlinespace
+Political Responsibility & 0.04 & 0.05 & 0.04 & 0.190 & 0.03 & 0.0400 & 0.04 & 0.347 & 0.07 & 0.100 & 0.04 & 0.022\\
+\midrule
+R$^{2}$ &  & 0.26 &  &  &  & 0.2345 &  &  &  & 0.221 &  & \\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+
+\hypertarget{part-2.-are-guilt-and-shame-predictive-of-anti-government-action-in-an-authoritarian-state}{%
+\subsection*{Part 2. Are guilt and shame predictive of anti-government action in an authoritarian state?}\label{part-2.-are-guilt-and-shame-predictive-of-anti-government-action-in-an-authoritarian-state}}
+\addcontentsline{toc}{subsection}{Part 2. Are guilt and shame predictive of anti-government action in an authoritarian state?}
+
+In a series of linear regressions, we tested whether guilt, image shame, and moral shame are predictive of anti-war actions in the past and in the future. Only moral shame was consistently related to anti-war action and the results were consistent in linear (Table 2) and zero-inflated negative binomial models (Table S3, SM). Group-based guilt and shame explained about 18\% of variance in past behavior and about 40\% of variance in future behavior.
+
+\hypertarget{table-2}{%
+\subsection*{Table 2}\label{table-2}}
+\addcontentsline{toc}{subsection}{Table 2}
+
+Predicting anti-war action from group-based guilt and shame
+
+\begin{table}[H]
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}{lllllllllllll}
+\toprule
+\multicolumn{1}{c}{} & \multicolumn{4}{c}{Past Behaviour} & \multicolumn{4}{c}{Behavioural Intention} & \multicolumn{4}{c}{Action Probability} \\
+\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9} \cmidrule(l{3pt}r{3pt}){10-13}
+  & $\beta$ & b & SE & p & $\beta$ & b & SE & p & $\beta$ & b & SE & p\\
+\midrule
+Intercept & 0 & 0.1 & 0.04 & 0.0094 & 0 & 1.09 & 0.03 & <0.001 & 0 & 1.21 & 0.07 & <0.001\\
+Guilt & 0.02 & 0.01 & 0.04 & 0.7562 & 0 & 0 & 0.03 & 0.942 & 0.05 & 0.06 & 0.06 & 0.326\\
+Image Shame & -0.07 & -0.05 & 0.05 & 0.3926 & 0.1 & 0.06 & 0.04 & 0.154 & -0.02 & -0.02 & 0.1 & 0.826\\
+Moral Shame & 0.48 & 0.31 & 0.06 & <0.001 & 0.56 & 0.33 & 0.05 & <0.001 & 0.59 & 0.77 & 0.11 & <0.001\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+
+\hypertarget{part-3.-is-moral-shame-a-better-predictor-of-future-anti-war-action-than-other-emotions-and-attitudes}{%
+\subsection*{Part 3. Is moral shame a better predictor of future anti-war action than other emotions and attitudes?}\label{part-3.-is-moral-shame-a-better-predictor-of-future-anti-war-action-than-other-emotions-and-attitudes}}
+\addcontentsline{toc}{subsection}{Part 3. Is moral shame a better predictor of future anti-war action than other emotions and attitudes?}
+
+Behavioral intentions and action probability correlated at r = 0.86, p \textless0.001, so we scaled and combined the two measures into a single indicator of future anti-war action. We ran a linear regression predicting future anti-war behavior from attitude towards the war, negative and positive emotions, and shame and guilt. Table 3 presents the results. Overall, the model explained 47\% of variance in future behavior. Anti-war behavioral intentions were best predicted by moral shame (\(\beta\) = 0.36, p \textless0.001), followed by negative dominant emotions (\(\beta\) = 0.24, p \textless0.001), and only then attitude (\(\beta\) = -0.15, p \textless0.001). Negative submissive emotions had a small negative effect on intentions to act (\(\beta\) = -0.08, p = 0.015).
+
+\hypertarget{table-3}{%
+\subsection*{Table 3}\label{table-3}}
+\addcontentsline{toc}{subsection}{Table 3}
+
+Predicting future behavior from emotions and attitudes
+
+\begin{table}[H]
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}{llllll}
+\toprule
+  & $\beta$ & b & SE & t-value & p\\
+\midrule
+Intercept & 0 & -0.1 & 0.12 & -0.82 & 0.410\\
+Emotions: Positive & -0.03 & -0.03 & 0.03 & -0.96 & 0.337\\
+Emotions: Negative Dominant & 0.24 & 0.19 & 0.03 & 6.4 & <0.001\\
+Emotions: Negative Submissive & -0.08 & -0.07 & 0.03 & -2.43 & 0.015\\
+Attitudes towards the war & -0.15 & -0.12 & 0.03 & -3.77 & <0.001\\
+\addlinespace
+Group-based moral shame & 0.36 & 0.22 & 0.05 & 4.63 & <0.001\\
+Group-based image shame & 0 & 0 & 0.04 & 0.03 & 0.977\\
+Group-based guilt & 0.03 & 0.02 & 0.03 & 0.76 & 0.450\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+
+The results of the zero-inflated negative binomial model (Table S4, SM) suggested that different predictors account for the presence vs.~absence of intentions to act versus the strength of these intentions. Only moral shame (b = -.36, p = .036) and attitude (b = .38, p = .001) predicted the probability of no action, whereas only negative emotions predicted the strength of these intentions. Negative dominant emotions predicted stronger intentions to act (b = .24, p \textless{} .001), whereas negative submissive emotions predicted weaker intentions to act (b = -.14, p = .013).
+
+\allsectionsfont{\centering}
+
+\hypertarget{discussion}{%
+\section*{Discussion}\label{discussion}}
+\addcontentsline{toc}{section}{Discussion}
+
+We set out to investigate the role of group-based guilt and shame in anti-government political action in Russia, an authoritarian country at war. This study aimed to address three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Below we will summarize the findings addressing each of these three questions in order.
+
+Although we found that political responsibility predicted group-based guilt and the belief that politicians are evil predicted both guilt and shame, these effects were not as strong or as reliable as that of democratic values. Only democratic values predicted both occurrence and strength of all three emotions: guilt, moral shame, and image shame. If we accept the premise that the function of group-based guilt and shame is to change and regulate group behavior, then this finding suggests that democratic values are more important for collective action than political efficacy. This is consistent with Ayanian et al. (2021) that show that political efficacy is not a primary driver of collective action in repressive contexts. People in such contexts might engage in political action even if they do not believe that their actions will lead to political change. Broader democratic values, on the other hand, seem to be a necessary precondition for people to believe in the potential of building a movement that would stand a chance against the regime (participative efficacy and identity consolidation efficacy in Ayanian et al. (2021)).
+
+Moral shame consistently predicted anti-war action, both past and future, whereas guilt and image shame did not. Although we expected this null result for image shame based on previous findings that reputational concerns are more likely to motivate avoidance behaviors (Grigoryan and Efremova, 2017; Rees et al., 2013), we did not expect guilt to have no effect. Theoretically, guilt, unlike shame, should directly motivate restorative action (Lickel et al., 2011; Tangney et al., 2007). Perhaps not believing that your actions would lead to some political change is more detrimental to the motivation of those who experience guilt than those who experience moral shame. To stop feeling guilt, the behavior that led to the emergence of that feeling needs to be corrected. When this possibility is blocked, guilt might become dysfunctional. For example, a meta-analysis of guilt, shame, and depressive symptoms (Kim et al., 2011) showed that the association between guilt and depression is particularly strong when guilt involves exaggerated responsibility over uncontrollable events. Moral obligation, on the other hand, can motivate collective action even when people understand that this action is unlikely to be successful (Ayanian et al., 2021).
+
+Consistent with earlier evidence from collective action literature (van Zomeren et al., 2008), we find that emotions (moral shame and negative dominant emotions) have a stronger effect on collective action tendencies than attitude towards the war. The results of zero-inflated negative binomial models shed further light on predictors of the decision to take part in collective action vs.~the strength of these intentions. The dual pathway model of collective action suggests that collective action can be motivated via an emotional (anger) or a cognitive (efficacy) route (van Zomeren et al., 2004). Our findings suggest that this might be a sequential process: the decision to take any political action was predicted by attitude towards the war and moral shame, which has a cognitive element of moral appraisal of the war, whereas the strength of intention to take action was best predicted by negative emotions -- negative dominant emotions (e.g., anger) predicted a stronger intention to take action, whereas negative submissive emotions (e.g., fear) predicted a weaker intention to take action.
+
+This study contributes to the literature on collective action by investigating the role of group-based guilt and shame in anti-war action in an authoritarian country at war. We show that democratic values are fundamental to feeling guilt and shame, and that only moral shame translates into political action. It further contributes to the understanding of collective action more broadly, by providing first evidence that suggests that cognitive and emotional factors might have differential impact on the decision to participate in collective action vs.~the strength of these intentions. Whereas moral reasoning seems more important for the decision to participate, emotions are more important for the strength of these intentions.
+
+This study is, of course, not without its limitations. The major limitation of the current dataset is its cross-sectional nature, which does not allow us to make any causal conclusions. However, given the difficulty of accessing such samples, we believe that survey data, particularly from large samples that are representative of the country's population by key demographic characteristics, is highly valuable. The second major concern is social desirability. As mentioned in the introduction, anti-war sentiments are essentially criminalized in Russia, so we can be almost certain that some participants did not feel comfortable disclosing their true beliefs about the ``special military operation'' in the questionnaire, even though the study was completely anonymous. Despite the high likelihood of social desirability bias, we believe most participants were honest in their responses. The overall distribution of the scores on support for the ``special military operation'' (46.7\% support, 27.9\% oppose, and 25.4\% are not sure) is what we would expect based on public opinion surveys (Levada-Center, 2022), accounting for the online nature of our sample, which is likely to be more anti-government than the samples of telephone surveys.
+
+This study highlights some gaps in the literature that still need to be addressed. First, more evidence from authoritarian regimes would help contextualize existing knowledge on collective action and understand its implicit assumptions and limitations. Second, research on group-based guilt and shame is largely historic in nature and more studies from contexts with ongoing intergroup conflicts could help expand this literature and better understand the motivational power of these emotions for intergroup conflict and peace. Third, more work is needed in developing interventions that can increase a sense of responsibility for ingroup's wrongdoings in contexts where political participation is restricted and such responsibility is denied. All these developments would require a broader participation of scholars from the majority world that can fill in these gaps by providing the necessary conceptualizations and empirical evidence from the many non-democratic countries of the world.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Allpress2010}{}}%
+Allpress JA, Barlow FK, Brown R, Louis WR. 2010. Atoning for colonial injustices: Group-based shame and guilt motivate support for reparation. \emph{International Journal of Conflict and Violence (IJCV)} Vol 4 No 1 (2010). doi:\href{https://doi.org/10.4119/IJCV-2816}{10.4119/IJCV-2816}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Allpress2014}{}}%
+Allpress JA, Brown R, Giner-Sorolla R, Deonna JA, Teroni F. 2014. Two faces of group-based shame: Moral shame and image shame differentially predict positive and negative orientations to ingroup wrongdoing. \emph{Pers Soc Psychol Bull} \textbf{40}:1270--84. doi:\href{https://doi.org/10.1177/0146167214540724}{10.1177/0146167214540724}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Ayanian2016}{}}%
+Ayanian AH, Tausch N. 2016. How risk perception shapes collective action intentions in repressive contexts: A study of {Egyptian} activists during the 2013 post-coup uprising. \emph{Br J Soc Psychol} \textbf{55}:700--721. doi:\href{https://doi.org/10.1111/bjso.12164}{10.1111/bjso.12164}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Ayanian2021}{}}%
+Ayanian AH, Tausch N, Acar YG, Chayinska M, Cheung W-Y, Lukyanova Y. 2021. Resistance in repressive contexts: A comprehensive test of psychological predictors. \emph{J Pers Soc Psychol} \textbf{120}:912--939. doi:\href{https://doi.org/10.1037/pspi0000285}{10.1037/pspi0000285}
+
+\leavevmode\vadjust pre{\hypertarget{ref-CanettiNisim2007}{}}%
+Canetti-Nisim D, Beit-Hallahmi B. 2007. \href{http://www.jstor.org/stable/20447457}{The effects of authoritarianism, religiosity, and "new age" beliefs on support for democracy: Unraveling the strands}. \emph{Review of Religious Research} \textbf{48}:369--384.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Cehajic-Clancy2011}{}}%
+Cehajić-Clancy S, Effron DA, Halperin E, Liberman V, Ross LD. 2011. Affirmation, acknowledgment of in-group responsibility, group-based guilt, and support for reparative measures. \emph{J Pers Soc Psychol} \textbf{101}:256--70. doi:\href{https://doi.org/10.1037/a0023936}{10.1037/a0023936}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Eckel2022}{}}%
+Eckel M. 2022. \href{https://www.rferl.org/a/russia-ukraine-war-discrediting-armed-forces-law/31875273.html}{'Discrediting' the armed forces: The {Russians} caught up in a draconian law}. \emph{Radio Liberty}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Gordeeva2022}{}}%
+Gordeeva E. 2022. \href{https://www.youtube.com/@skazhigordeevoy}{{``Скажи гордеевой''} {{[}Tell Gordeeva{]}}}. \emph{YouTube channel}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Grigoryan2017}{}}%
+Grigoryan L, Efremova MV. 2017. Group-based guilt and shame and outgroup attitudes in {Russian} context. \emph{Cultural-Historical Psychology} \textbf{13}:61--70. doi:\href{https://doi.org/10.17759/chp.2017130207}{10.17759/chp.2017130207}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Grigoryan2018}{}}%
+Grigoryan L, Khaptsova AA, Poluektova OV. 2018. The challenges of adapting a questionnaire to a new cultural context: The case of studying group-based guilt and shame in {Russia}. \emph{Cultural-Historical Psychology} \textbf{14}:98--106. doi:\href{https://doi.org/10.17759/chp.2018140111}{10.17759/chp.2018140111}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Grigoryan2022}{}}%
+Grigoryan L, Ponizovskiy V. 2022. \href{https://novaya.media/articles/2022/08/16/ia-ne-vinovat}{Я не виноват! Людям, которым важна их групповая принадлежность, сложно испытывать стыд. Что психологи и философы знают о коллективной ответственности. {[}I am not guilty! People who identify strongly with their group feel less shame. What psychologists and philosophers know about collective responsibility{]}}. \emph{Novaya Gazeta}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Hakim2021}{}}%
+Hakim N, Branscombe N, Schoemann A. 2021. Group-based emotions and support for reparations: A meta-analysis. \emph{Affect Sci} \textbf{2}:363--378. doi:\href{https://doi.org/10.1007/s42761-021-00055-9}{10.1007/s42761-021-00055-9}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Iyer2008}{}}%
+Iyer A, Leach CW. 2008. Emotion in inter-group relations. \emph{European Review of Social Psychology} \textbf{19}:86--125. doi:\href{https://doi.org/10.1080/10463280802079738}{10.1080/10463280802079738}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Kim2011}{}}%
+Kim S, Thibodeau R, Jorgensen RS. 2011. Shame, guilt, and depressive symptoms: A meta-analytic review. \emph{Psychol Bull} \textbf{137}:68--96. doi:\href{https://doi.org/10.1037/a0021466}{10.1037/a0021466}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Kynev2022}{}}%
+Kynev A. 2022. \href{https://www.svoboda.org/a/prosveschatj-ili-kayatjsya-aleksandr-kynev-o-katastrofe-oppozitsii/31792631.html}{Просвещать или каяться? Александр кынев -- о катастрофе оппозиции. {[}To enlighten or to reprent? {Alexander Kynev} on the catastrophe of the opposition movement{]}}. \emph{Radio Liberty}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Levada-Center2022}{}}%
+Levada-Center. 2022. \href{https://www.levada.ru/en/2022/12/12/conflict-with-ukraine-november-2022/}{Conflict with {Ukraine: November} 2022}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Lickel2011}{}}%
+Lickel B, Steele RR, Schmader T. 2011. Group-based shame and guilt: Emerging directions in research. \emph{Social and Personality Psychology Compass} \textbf{5}:153--163. doi:\url{https://doi.org/10.1111/j.1751-9004.2010.00340.x}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Mehrabian1980}{}}%
+Mehrabian A. 1980. Basic dimensions for a general psychological theory: Implications for personality, social, environmental, and developmental studies. Oelgeschlager, Gunn \& Hain.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Nooitgedagt2021}{}}%
+Nooitgedagt W, Martinović B, Verkuyten M, Jetten J. 2021. Autochthony belief and making amends to indigenous peoples: The role of collective moral emotions. \emph{Social Justice Research} \textbf{34}:53--80. doi:\href{https://doi.org/10.1007/s11211-021-00362-3}{10.1007/s11211-021-00362-3}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Olsen1969}{}}%
+Olsen ME. 1969. Two categories of political alienation. \emph{Social Forces} \textbf{47}:288--299. doi:\href{https://doi.org/10.2307/2575027}{10.2307/2575027}
+
+\leavevmode\vadjust pre{\hypertarget{ref-OVDInfo2022}{}}%
+OVD-Info. 2022. \href{https://en.ovdinfo.org/day-18-war-and-protest-detention-march-13th}{Day 18 of war and protest: Detention on {March} 13th}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Pattyn2012}{}}%
+Pattyn S, Hiel AV, Dhont K, Onraet E. 2012. Stripping the political cynic: A psychological exploration of the concept of political cynicism. \emph{European Journal of Personality} \textbf{26}:566--579. doi:\href{https://doi.org/10.1002/per.858}{10.1002/per.858}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Rees2013}{}}%
+Rees JH, Allpress JA, Brown R. 2013. Nie wieder: Group-based emotions for in-group wrongdoing affect attitudes toward unrelated minorities. \emph{Political Psychology} \textbf{34}:387--407. doi:\url{https://doi.org/10.1111/pops.12003}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Schmader2006}{}}%
+Schmader T, Lickel B. 2006. The approach and avoidance function of guilt and shame emotions: Comparing reactions to self-caused and other-caused wrongdoing. \emph{Motivation and Emotion} \textbf{30}:42--55. doi:\href{https://doi.org/10.1007/s11031-006-9006-0}{10.1007/s11031-006-9006-0}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Smith1985}{}}%
+Smith CA, Ellsworth PC. 1985. \href{https://www.ncbi.nlm.nih.gov/pubmed/3886875}{Patterns of cognitive appraisal in emotion}. \emph{J Pers Soc Psychol} \textbf{48}:813--38.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Tangney2007}{}}%
+Tangney JP, Stuewig J, Mashek DJ. 2007. Moral emotions and moral behavior. \emph{Annu Rev Psychol} \textbf{58}:345--72. doi:\href{https://doi.org/10.1146/annurev.psych.56.091103.070145}{10.1146/annurev.psych.56.091103.070145}
+
+\leavevmode\vadjust pre{\hypertarget{ref-MoscowTimes2022}{}}%
+The Moscow Times. 2022. \href{https://www.themoscowtimes.com/2022/03/07/over-150-journalists-flee-russia-amid-wartime-crackdown-on-free-press-reports-a76809\%20on\%2030.03.2023}{Over 150 journalists flee {Russia} amid wartime crackdown on free press}. \emph{The Moscow Times}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Treus2022}{}}%
+Treus A. 2022. \href{https://aussiedlerbote.de/2022/11/kinokritik-anton-dolin-rossiyane-uzhe-oshhushhayut-otvetstvennost-za-vojnu/}{Кинокритик антон долин: Россияне уже ощущают ответственность за войну {[}the film critic {Anton Dolin}: Russians are already feeling the responsibility for the war{]}.} \emph{Stratera}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Zomeren2018}{}}%
+van Zomeren M, Kutlaca M, Turner-Zwinkels F. 2018. Integrating who {``}we{''} are with what {``}we{''} (will not) stand for: A further extension of the social identity model of collective action. \emph{European Review of Social Psychology} \textbf{29}:122--160. doi:\href{https://doi.org/10.1080/10463283.2018.1479347}{10.1080/10463283.2018.1479347}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Zomeren2008}{}}%
+van Zomeren M, Postmes T, Spears R. 2008. Toward an integrative social identity model of collective action: A quantitative research synthesis of three socio-psychological perspectives. \emph{Psychol Bull} \textbf{134}:504--35. doi:\href{https://doi.org/10.1037/0033-2909.134.4.504}{10.1037/0033-2909.134.4.504}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Zomeren2004}{}}%
+van Zomeren M, Spears R, Fischer AH, Leach CW. 2004. Put your money where your mouth is! Explaining collective action tendencies through group-based anger and group efficacy. \emph{J Pers Soc Psychol} \textbf{87}:649--64. doi:\href{https://doi.org/10.1037/0022-3514.87.5.649}{10.1037/0022-3514.87.5.649}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Watson1988}{}}%
+Watson D, Clark LA, Tellegen A. 1988. Development and validation of brief measures of positive and negative affect: The PANAS scales. \emph{J Pers Soc Psychol} \textbf{54}:1063--70. doi:\href{https://doi.org/10.1037//0022-3514.54.6.1063}{10.1037//0022-3514.54.6.1063}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Weiss-Klayman2020}{}}%
+Weiss-Klayman N, Hameiri B, Halperin E. 2020. Group-based guilt and shame in the context of intergroup conflict: The role of beliefs and meta-beliefs about group malleability. \emph{Journal of Applied Social Psychology} \textbf{50}:213--227. doi:\url{https://doi.org/10.1111/jasp.12651}
+
+\end{CSLReferences}
+
+\hypertarget{supplementary-materials}{%
+\section*{Supplementary materials}\label{supplementary-materials}}
+\addcontentsline{toc}{section}{Supplementary materials}
+
+\beginsupplement
+
+\end{document}

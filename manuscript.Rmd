@@ -1,0 +1,1150 @@
+---
+title: "Guilt, shame, and anti-war action in an authoritarian country at war"
+output:
+  bookdown::pdf_document2:
+    latex_engine: lualatex
+    keep_tex: yes
+    toc: false
+  html_document:
+    df_print: paged
+  pdf_document: default
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{sectsty}
+  - \allsectionsfont{\centering}
+  - \usepackage{fontspec}
+  - \usepackage{polyglossia}
+  - \setdefaultlanguage{english}
+  - \setotherlanguages{russian}
+  - \setmainfont{Times New Roman}
+  - \newfontfamily{\cyrillicfonttt}{Times New Roman} 
+  - \usepackage{float} 
+  - \usepackage{float} \floatplacement{figure}{H} 
+  - \newcommand{\beginsupplement}{\setcounter{table}{0}    
+  - \renewcommand{\thetable}{S\arabic{table}} 
+  - \setcounter{figure}{0} 
+  - \renewcommand{\thefigure}{S\arabic{figure}}}  
+indent: true
+bibliography: references.bib
+csl: elife.csl
+---
+\vspace{10mm}
+\begin{center}
+Lusine Grigoryan$^{1}$, Vladimir Ponizovskiy$^{2}$, Marie Isabelle Wießflog$^{2}$, Evgeny Osin$^{3}$,$^{4}$, and Brian Lickel$^{5}$
+\vspace{30mm}
+
+$^{1}$ Department of Psychology, University of York
+\vspace{5mm}
+
+$^{2}$ Department of Psychology, Ruhr University Bochum
+\vspace{5mm}
+
+$^{3}$ LINP2 Lab, Université Paris Nanterre
+\vspace{5mm}
+
+$^{4}$ School of Psychology, HSE University
+\vspace{5mm}
+
+$^{5}$ Department of Psychological and Brain Sciences, University of Massachusetts Amherst
+\vspace{50mm}
+
+\end{center}
+
+
+\noindent We have no known conflict of interest to disclose.
+
+\noindent All study materials, data, and code can be found on the OSF platform: https://osf.io/4pd2v/?view_only=23597fdc19424706818a72fc0df43009
+
+\noindent Correspondence concerning this article should be addressed to Lusine Grigoryan, University of York,
+
+\noindent Psychology Building, Heslington, York YO10 5NA, UK. Email: lusine.grigoryan@york.ac.uk
+
+
+\pagebreak
+
+# Abstract {.unnumbered}
+
+Studies of group-based guilt and shame show that these emotions can facilitate intergroup reconciliation. However, most of these studies are conducted in democratic countries and usually on past, not present events. We set out to investigate the role of group-based guilt and shame in collective action in an authoritarian country at war. We asked more than 1000 Russians living in Russia, a sample representative of the country’s population by gender and age,  about their experiences of group-based guilt and shame in relation to Russia’s invasion of Ukraine and their past and future anti-war political actions. The study was guided by three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Democratic values, not political efficacy, was the most robust predictor of group-based guilt and shame. Only moral shame, but not guilt or image shame predicted past and future anti-war action. Whereas attitude towards the war and moral shame predicted whether or not participants intend to engage in political action, negative emotions predicted the strength of these intentions. We highlight the gaps in the study of collective action and the need for more evidence from non-democratic contexts. 
+
+\vspace{5mm}
+*Keywords*: group-based guilt, moral shame, image shame, collective action, Russia-Ukraine war, authoritarianism
+
+
+```{r setup, include=FALSE}
+
+packagelist <- c('readr','psych','GPArotation','lavaan','pscl','ggplot2','sjPlot', 'car','dplyr','MASS','writexl','readxl','kableExtra')
+missingpackages <- packagelist[!packagelist %in% installed.packages()[,1]]
+if (length(missingpackages)>0){install.packages(missingpackages)}
+toinstall <- packagelist[which(!packagelist %in% (.packages()))]
+invisible(lapply(toinstall,library,character.only=TRUE))
+
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+
+```{r dataprep, echo=FALSE, include=FALSE}
+
+data <- read_csv("Raw data_August 20, 2022_13.47.csv")
+d1 <- data[,-c(3,8:10)]
+
+colnames(d1) <- c('start','end','progress','duration','finished','recorded','consent',
+                  'age','gender','citizenship','citizen_other','education','income',
+                  'residence','residence_other','ethn','ethn_other','gentrust',
+                  'natid1','natid2','natid3','natid4','natid5',
+                  'idtown','idcountry','idcont','idworld',
+                  'bcp1','bcp2','bcp3','bcp4','bcp5','bcp6','bcp7','bcp8','bcp9',
+                  'bcp10','bcp11','bcp12','mediaf_tv','mediaf_ag','mediaf_ono',
+                  'mediaf_oo','mediaf_yt','mediaf_rsn','mediaf_isn','mediaf_mes',
+                  'mediat_tv','mediat_ag','mediat_ono','mediat_oo',
+                  'mediat_yt','mediat_rsn','mediat_isn','mediat_mes','consp1',
+                  'consp2','consp3','consp4','consp5','consp6','consp7',
+                  'consp8','att1','consp9','consp10','consp11','consp12',
+                  'sef1','sef2','sef3','sef4','sef5','sef6','sef7','sef8','sef9','sef10',
+                  'rwa1','rwa2','rwa3','rwa4','rwa5','rwa6','rwa7','rwa8','rwa9',
+                  'sdo1','sdo2','sdo3','sdo4','sdo5','sdo6','att2',
+                  'sdo7','sdo8','sdo9','sdo10','dem1','dem2','dem3','dem4','dem5','dem6',
+                  'pcyn1','pcyn2','pcyn3','pcyn4','pcyn5','pcyn6','pcyn7','pcyn8',
+                  'pal1','att3','pal2','pal3','pal4','pr1','pr2','pr3','pr4','pr5',
+                  'smop_support','smop_att1','smop_att2','smop_att3',
+                  'fear','happy','sad','hope','anger','enthusiasm','disgust',
+                  'pride','contempt','depressed','guilt','shame','cguilt1',
+                  'cguilt2','cguilt3','mshame1','mshame2','mshame3','mshame4',
+                  'ishame1','ishame2','ishame3','ishame4','ishame5',
+                  'vib_se1','vib_se2','vib_co1','vib_co2','vib_tr1',
+                  'vib_tr2','vib_be1','vib_be2','vib_un1','vib_un2','vib_un3',
+                  'vib_sd1','vib_sd2','vib_st1','vib_st2','vib_he1','vib_he2',
+                  'vib_ac1','vib_ac2','vib_po1','vib_po2','pb_smop_supp',
+                  'pb_smop_opp','motiv1','motiv2','motiv3','motiv4',
+                  'bi_smop_supp1','bi_smop_supp2','bi_smop_supp3','bp_smop_supp',
+                  'bi_smop_opp1','bi_smop_opp2','bi_smop_opp3','bp_smop_opp')
+
+col_order <- c('start','end','progress','duration','finished','recorded','consent',
+               'age','gender','citizenship','citizen_other','education','income',
+               'residence','residence_other','ethn','ethn_other','gentrust',
+               'natid1','natid2','natid3','natid4','natid5',
+               'idtown','idcountry','idcont','idworld',
+               'bcp1','bcp2','bcp3','bcp4','bcp5','bcp6','bcp7','bcp8','bcp9',
+               'bcp10','bcp11','bcp12','mediaf_tv','mediaf_ag','mediaf_ono',
+               'mediaf_oo','mediaf_yt','mediaf_rsn','mediaf_isn','mediaf_mes',
+               'mediat_tv','mediat_ag','mediat_ono','mediat_oo',
+               'mediat_yt','mediat_rsn','mediat_isn','mediat_mes','consp1',
+               'consp2','consp3','consp4','consp5','consp6','consp7',
+               'consp8','consp9','consp10','consp11','consp12',
+               'sef1','sef2','sef3','sef4','sef5','sef6','sef7','sef8','sef9','sef10',
+               'rwa1','rwa2','rwa3','rwa4','rwa5','rwa6','rwa7','rwa8','rwa9',
+               'sdo1','sdo2','sdo3','sdo4','sdo5','sdo6','sdo7','sdo8','sdo9','sdo10',
+               'dem1','dem2','dem3','dem4','dem5','dem6',
+               'pcyn1','pcyn2','pcyn3','pcyn4','pcyn5','pcyn6','pcyn7','pcyn8',
+               'pal1','pal2','pal3','pal4','pr1','pr2','pr3','pr4','pr5',
+               'smop_support','smop_att1','smop_att2','smop_att3',
+               'fear','happy','sad','hope','anger','enthusiasm','disgust',
+               'pride','contempt','depressed','guilt','shame','cguilt1',
+               'cguilt2','cguilt3','mshame1','mshame2','mshame3','mshame4',
+               'ishame1','ishame2','ishame3','ishame4','ishame5',
+               'vib_se1','vib_se2','vib_co1','vib_co2','vib_tr1',
+               'vib_tr2','vib_be1','vib_be2','vib_un1','vib_un2','vib_un3',
+               'vib_sd1','vib_sd2','vib_st1','vib_st2','vib_he1','vib_he2',
+               'vib_ac1','vib_ac2','vib_po1','vib_po2','pb_smop_supp',
+               'pb_smop_opp','motiv1','motiv2','motiv3','motiv4',
+               'bi_smop_supp1','bi_smop_supp2','bi_smop_supp3','bp_smop_supp',
+               'bi_smop_opp1','bi_smop_opp2','bi_smop_opp3','bp_smop_opp',
+               'att1','att2','att3')
+d2 <- d1[, col_order]
+d2 <- d2[-c(1:2),]
+d2$consentf <- count.fields(textConnection(d2$consent), sep = ",")
+d2 <- subset(d2, d2$consentf>17) #exclude p's who didn't give full consent, N=1011
+table(d2$progress) #N=981 completed all measures
+
+###Attention checks
+d2$att1 <- ifelse(d2$att1=="1\nАбсолютно не согласен\n",0,1)
+d2$att2 <- ifelse(d2$att2=="7Абсолютно согласен",0,1)
+d2$att3 <- ifelse(d2$att3=="4",0,1)
+d2$att <- rowSums(d2[,c('att1','att2','att3')])
+table(d2$att)
+
+d3 <- subset(d2, d2$att<2) #final N=973
+
+
+###Recoding###
+
+##Socio-demographics
+
+d3[,c(3,4,8)] <- lapply(d3[,c(3,4,8)], as.numeric)
+d3$gender <- recode_factor(d3$gender, "Мужчина"="man","Женщина"="woman",
+                           "Другой пол / Не хочу отвечать"="other")
+100*table(d3$gender) %>% prop.table() #49.6% men, 49.9% women, 0.4% other gender/no response
+
+describe(d3$age) #Mage=38.5, SD=12.7, median=37, range: 18-88
+
+d3$citizenship <- recode_factor(d3$citizenship, "Да"="Yes","Нет"="No")
+100*table(d3$citizenship) %>% prop.table() #100% Russian citizens
+
+d3$education_c <- recode_factor(d3$education, 
+                                "Начальное образование (7 классов средней школы или меньше)"="1.Elementary",
+                                "Незаконченная средняя школа"="2.Unfinished secondary",
+                                "ПТУ, ФЗУ, ФЗО, лицей без среднего образования"="3.Unf.sec.cont",
+                                "Законченная средняя школа"="4.Secondary",
+                                "ПТУ, лицей со средним образованием или техническое училище (обучение 2-3 года)"="5.Technical cont.",
+                                "Среднее специальное образование: техникум, училище, колледж"="6.College",
+                                "Несколько курсов вуза, но без диплома"="7.University, no degree",
+                                "Получил диплом бакалавра"="8.BA",
+                                "Законченное высшее образование по 5-6 летней системе (диплом специалиста)"="9.Specialist",
+                                "Получил диплом магистра"="10.MA",
+                                "Постдипломное образование: аспирантура, докторантура, ординатура, адъюнктура - без научной степени"="11.Doctoral studies, no degree",
+                                "Научная степень (кандидат, доктор наук)"="12.Doctoral degree")
+100*table(d3$education_c) %>% prop.table() #12% secondary school, 27.8% college (2-3years), 55.2% some uni or undergrad,
+                                          #4.9 MA or PhD
+
+d3$education_n <- dplyr::recode(d3$education, 
+                                "Начальное образование (7 классов средней школы или меньше)"=1,
+                                "Незаконченная средняя школа"=2,
+                                "ПТУ, ФЗУ, ФЗО, лицей без среднего образования"=3,
+                                "Законченная средняя школа"=4,
+                                "ПТУ, лицей со средним образованием или техническое училище (обучение 2-3 года)"=5,
+                                "Среднее специальное образование: техникум, училище, колледж"=6,
+                                "Несколько курсов вуза, но без диплома"=7,
+                                "Получил диплом бакалавра"=8,
+                                "Законченное высшее образование по 5-6 летней системе (диплом специалиста)"=9,
+                                "Получил диплом магистра"=10,
+                                "Постдипломное образование: аспирантура, докторантура, ординатура, адъюнктура - без научной степени"=11,
+                                "Научная степень (кандидат, доктор наук)"=12)
+describe(d3$education_n) #M=7.28, SD=1.93
+
+d3$income <- dplyr::recode(d3$income, "существенно ниже среднего"=1,"чуть ниже среднего"=2,
+                    "средний"=3,"чуть выше среднего"=4,"существенно выше среднего"=5)
+describe(d3$income) #M=2.27, SD=0.93
+100*table(d3$income) %>% prop.table() #55% lower than average, 38% average, 7% above average
+
+d3$residence <- recode_factor(d3$residence, "в России"="Russia", 
+                       "за пределами России (при желании уточните, где именно)"="not Russia")
+100*table(d3$residence) %>% prop.table() #99.6% live in Russia
+table(d3$residence_other)
+
+d3$ethn <- recode_factor(d3$ethn, "Русский/Русская"="Russian",
+                  "Татарин/Татарка"="Tatar", "Украинец/Украинка"="Ukrainian",
+                  "Чуваш/Чувашка"="Chuvash", "Башкир/Башкирка"="Bashkir",
+                  "Чеченец/Чеченка"="Chechen","Другая национальность (укажите)"="Other")
+100*table(d3$ethn) %>% prop.table() #90.8% Russian, 3.1% Tatar, 1% Ukrainian, Chuvash, and Bashkir, 3.2% others
+table(d3$ethn_other)
+
+d3$gentrust <- dplyr::recode(d3$gentrust, "0"=0,"1"=1,"2"=2,"3"=3,"4"=4,"5"=5,"6"=6,
+                      "7"=7,"8"=8,"9"=9,"10"=10,"11"=11)
+describe(d3$gentrust) #M=4.89, SD=2.47
+
+#national identity
+d3 <- d3 %>%
+  mutate_at(vars(19:22),~dplyr::recode(., "1\n\nАбсолютно не согласен"=1, 
+                                       "2"=2, "3"=3, "4"=4,
+                                         "5\nАбсолютно согласен"=5))
+describe(d3[,c(19:22)])
+psych::alpha(d3[,c(19:22)]) #alpha=.92
+d3$NatId <- rowMeans(d3[,c(19:22)], na.rm=TRUE)
+
+d3$natid5 <- dplyr::recode(d3$natid5, "А"=1,"Б"=2,"В"=3,"Г"=4,"Д"=5,"Е"=6,
+                    "Ж"=7)
+cor.test(d3$natid5, d3$NatId)
+
+#local-global identity
+d3 <- d3 %>%
+  mutate_at(vars(24:27),~dplyr::recode(., "совсем не близко"=1, 
+                                       "не очень близко"=2, "близко"=3, 
+                                       "очень близко"=4))
+describe(d3[,c(24:27)])
+cor(d3[,c(24:27)], use = "complete.obs") #town and country:r=.62; world and continent:r=.75
+
+d3$globalId = rowMeans(d3[,c(26:27)], na.rm=TRUE)
+d3$localId = rowMeans(d3[,c(24:25)], na.rm=TRUE)
+describe(d3$globalId) #M=2.09, SD=0.74
+describe(d3$localId) #M=2.65, SD=0.74
+
+##blind and constructive patriotism
+d3 <- d3 %>%
+  mutate_at(vars(28:39),~dplyr::recode(., "-3\n\nАбсолютно не согласен"=1, 
+                                       "-2"=2,"-1"=3,"0"=4,"+1"=5,"+2"=6,
+                                       "+3\nАбсолютно согласен"=7))
+
+describe(d3[,c(28:39)])
+psych::alpha(d3[,c(28:33)]) #.95
+psych::alpha(d3[,c(34:39)]) #.81
+
+d3$pat_blind <- rowMeans(d3[,c(28:33)], na.rm=TRUE)
+d3$pat_constr <- rowMeans(d3[,c(34:39)], na.rm=TRUE)
+describe(d3$pat_blind) #M=4.19,SD=1.93
+describe(d3$pat_constr) #M=5.38, SD=1.08
+
+##media
+d3 <- d3 %>%
+  mutate_at(vars(40:47),~dplyr::recode(., "Почти никогда"=1, 
+                                       "Реже, чем раз в месяц"=2,"Раз в месяц"=3,
+                                       "Раз в неделю"=4,"Каждый день"=5))
+describe(d3[,c(40:47)])
+
+par(mar=c(2,2,2,2))
+fa.parallel(d3[,c(40:47)], fm="wls") #2 components, 2 factors
+
+cor(d3[,c(40:47)], use = "complete.obs")
+fa(d3[,c(40:47)], nfactors = 2,rotate = "oblimin") 
+#Errors:
+#1: In fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs,  :
+#The estimated weights for the factor scores are probably incorrect.  Try a different factor score estimation method.
+#2: In fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate,  :
+#An ultra-Heywood case was detected.  Examine the results carefully
+###Tried different estimation methods, didn't help
+###Trying CFA next: if negative var. is small, it can't be fixed to 0 in CFA. 
+###excluding mediaf_rsn (Russian social networks), since it loads equally on both factors
+
+media <- 'pro_gov =~ mediaf_tv+mediaf_ag+mediaf_ono
+anti_gov =~ mediaf_oo+mediaf_yt+mediaf_isn+mediaf_mes
+'
+
+fit <- cfa(media, data=d3, estimator="WLS") #estimator "WLS", because ML makes Heywood cases worse
+summary1 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+
+##the model is not too bad (CFI=.870, TLI=.790,RMSEA=.133,SRMR=.100) 
+#but still a negative var. for mediaf_ag (news agencies). It's not too large, although sig.: σ2=-.13,p=.013
+#the model with ordered=TRUE has the same problem and worse model fit
+ 
+
+media <- 'pro_gov =~ mediaf_tv+mediaf_ag+mediaf_ono
+anti_gov =~ mediaf_oo+mediaf_yt+mediaf_isn+mediaf_mes
+mediaf_ag~~0*mediaf_ag
+mediaf_oo~~mediaf_ono
+'
+fit <- cfa(media, data=d3, estimator="WLS")
+summary2 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+modificationindices(fit, sort=TRUE)
+
+#if we fix the negativevariance of mediaf_ag in this model to zero and add a correlation b/w two online outlets, 
+#the model is ok: CFI=.928,TLI=.884,RMSEA=.099,SRMR=.069.  
+
+d3$pro_gov_use <- rowMeans(d3[,c("mediaf_tv","mediaf_ag","mediaf_ono")],na.rm=TRUE)
+d3$anti_gov_use <- rowMeans(d3[,c("mediaf_oo","mediaf_yt","mediaf_isn", "mediaf_mes")],na.rm=TRUE)
+describe(d3$pro_gov_use) #M=3,SD=1.3
+describe(d3$anti_gov_use) #M=2.7, SD=1.1
+
+##Alternative single item measures for robustness check would be "mediaf_tv" and "mediaf_oo"
+
+
+d3 <- d3 %>%
+  mutate_at(vars(48:55),~dplyr::recode(., "1\nАбсолютно не доверяю\n"=1, 
+                                       "2"=2,"3"=3,"4"=4,
+                                       "5\nАбсолютно доверяю\n"=5))
+
+describe(d3[,c(48:55)])
+par(mar=c(2,2,2,2))
+fa.parallel(d3[,c(48:55)]) #2 components/2 factors
+cor(d3[,c(48:55)],use="complete.obs")
+fa(d3[,c(48:55)], nfactors = 2, rotate = "oblimin") #excluding _rsn, as it loads equally on both
+
+media <- 'pro_gov =~ mediat_ag+mediat_tv+mediat_ono
+anti_gov =~ mediat_yt+mediat_mes+mediat_oo+mediat_isn
+'
+fit <- cfa(media, data=d3, estimator="wls")
+summary3 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+#CFI=.858,TLI=.771,RMSEA=.119,SRMR=.095
+modificationindices(fit, sort=TRUE)
+
+#adding the error correlations b/w _ono and _oo makes the _ag var. negative, but n.s. Fixing it to 0.
+
+media <- 'pro_gov =~ mediat_ag+mediat_tv+mediat_ono
+anti_gov =~ mediat_yt+mediat_mes+mediat_oo+mediat_isn
+mediat_ono ~~ mediat_oo
+mediat_ag~~0*mediat_ag
+'
+
+fit <- cfa(media, data=d3, estimator="wls")
+summary4 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+modificationindices(fit, sort=TRUE)
+
+#an ok fitting model: CFI=.916, TLI=.864, RMSEA=.092, SRMR=.079;
+#all items load significantly and positively on respective factors, all cor's are sig.
+
+d3$pro_gov_trust <- rowMeans(d3[,c("mediat_tv","mediat_ag","mediat_ono")],na.rm=TRUE)
+d3$anti_gov_trust <- rowMeans(d3[,c("mediat_oo","mediat_yt","mediat_isn", "mediat_mes")],na.rm=TRUE)
+describe(d3$pro_gov_trust) #M=2.8,SD=1.1
+describe(d3$anti_gov_trust) #M=2.4, SD=0.9
+
+##conspiracy beliefs
+
+d3 <- d3 %>%
+  mutate_at(vars(56:67),~dplyr::recode(., "1\nАбсолютно не согласен\n"=1, 
+                                       "2"=2,"3"=3,"4"=4,"5"=5,"6"=6,
+                                       "7\nАбсолютно согласен\n"=7))
+describe(d3[,c(56:67)])
+
+d3$consp5 <- dplyr::recode(d3$consp5, '1'=7,'2'=6,'3'=5,'4'=4,'5'=3,'6'=2,'7'=1)
+d3$consp8 <- dplyr::recode(d3$consp8, '1'=7,'2'=6,'3'=5,'4'=4,'5'=3,'6'=2,'7'=1)
+cor(d3[,c(56:67)],use="complete.obs")
+psych::alpha(d3[,c(56:67)]) #alpha=.89
+
+d3$consp <- rowMeans(d3[,c(56:67)], na.rm=TRUE)
+describe(d3$consp) #M=4.32,SD=1.17
+
+##self-efficacy
+
+d3 <- d3 %>%
+  mutate_at(vars(68:77),~dplyr::recode(., "абсолютно неверно"=1, 
+                                       "едва ли это верно"=2,
+                                       "скорее всего - верно"=3,
+                                       "совершенно верно"=4))
+describe(d3[,c(68:77)])
+cor(d3[,c(68:77)],use="complete.obs")
+psych::alpha(d3[,c(68:77)]) #alpha=.91
+
+d3$seff <- rowMeans(d3[,c(68:77)],na.rm=TRUE)
+describe(d3$seff) #M=2.86,SD=0.53
+
+##RWA
+
+d3 <- d3 %>%
+  mutate_at(vars(78:86),~dplyr::recode(., "Совсем не согласен (1)"=1, 
+                                       "Не согласен (2)"=2,
+                                       "Частично согласен (3)"=3,
+                                       "В основном согласен (4)"=4,
+                                       "Полностью согласен (5)"=5))
+describe(d3[,c(78:86)])
+cor(d3[,c(78:86)],use="complete.obs")
+psych::alpha(d3[,c(78:86)]) #alpha=.90
+
+d3$RWA <- rowMeans(d3[,c(78:86)], na.rm=TRUE)
+describe(d3$RWA) #M=3.15,SD=0.85
+
+##SDO
+
+d3 <- d3 %>%
+  mutate_at(vars(87:96),~dplyr::recode(., "1Абсолютно не согласен"=1, 
+                                       "2"=2,"3"=3,"4"=4,"5"=5,"6"=6,
+                                       "7Абсолютно согласен"=7))
+describe(d3[,c(87:96)])
+cor(d3[,c(87:96)],use="complete.obs")
+
+cor(d3[,c("sdo1","sdo2","sdo4","sdo6","sdo8")],use="complete.obs")
+psych::alpha(d3[,c("sdo1","sdo2","sdo4","sdo6","sdo8")]) #dominance alpha=.75
+d3$SDO_d <- rowMeans(d3[,c("sdo1","sdo2","sdo4","sdo6","sdo8")], na.rm=TRUE)
+
+cor(d3[,c("sdo3","sdo5","sdo7","sdo9","sdo10")],use="complete.obs")
+psych::alpha(d3[,c("sdo3","sdo5","sdo7","sdo9","sdo10")]) #egalitar. alpha=.77
+d3$SDO_e <- rowMeans(d3[,c("sdo3","sdo5","sdo7","sdo9","sdo10")], na.rm=TRUE)
+
+cor.test(d3$SDO_d,d3$SDO_e) #r=-.385***
+
+d3 <- d3 %>%
+  mutate_at(vars(c("sdo3","sdo5","sdo7","sdo9","sdo10")),~dplyr::recode(., "1"=7, 
+                                       "2"=6,"3"=5,"4"=4,"5"=3,"6"=2,
+                                       "7"=1))
+cor(d3[,c(87:96)],use="complete.obs")
+psych::alpha(d3[,c(87:96)]) ##alpha=.80
+
+d3$SDO <- rowMeans(d3[,c(87:96)], na.rm=TRUE)
+describe(d3$SDO) #M=2.71, SD=1.03
+
+##Democratic values
+
+d3 <- d3 %>%
+  mutate_at(vars(97:102),~dplyr::recode(., "1Абсолютно не согласен"=1, 
+                                       "2"=2,"3"=3,"4"=4,"5"=5,"6"=6,
+                                       "7Абсолютно согласен"=7))
+describe(d3[,c(97:102)])
+d3$dem3 <- dplyr::recode(d3$dem3, "1"=7,"2"=6,"3"=5,"4"=4,"5"=3,"6"=2,"7"=1)
+d3$dem6 <- dplyr::recode(d3$dem6, "1"=7,"2"=6,"3"=5,"4"=4,"5"=3,"6"=2,"7"=1)
+cor(d3[,c(97:102)],use="complete.obs")
+psych::alpha(d3[,c(97:102)]) #alpha=.69
+
+d3$demv <- rowMeans(d3[,c(97:102)], na.rm=TRUE)
+describe(d3$demv) #M=4.99, SD=1.07
+
+##Polit. cynicism, alienation, responsibility
+
+d3 <- d3 %>%
+  mutate_at(vars(103:119),~dplyr::recode(., "1Абсолютно не согласен"=1, 
+                                        "2"=2,"3"=3,"4"=4,"5"=5,"6"=6,
+                                        "7Абсолютно согласен"=7))
+describe(d3[,c(103:119)])
+
+psych::alpha(d3[,c(103:110)]) #cynicism alpha=.91
+psych::alpha(d3[,c(111:114)]) #alienation alpha=.73
+psych::alpha(d3[,c(115:119)]) #responsibility alpha=.71
+
+
+fa.parallel(d3[,c(103:119)])
+pbfa <- fa(d3[,c(103:119)], nfactors = 4, rotate="oblimin")
+fa.diagram(pbfa)
+
+pb <- 'pcyn =~pcyn1+pcyn2+pcyn3+pcyn4+pcyn5+pcyn6+pcyn7+pcyn8
+pal =~pal1+pal2+pal3+pal4
+pr =~pr1+pr2+pr3+pr4+pr5
+'
+fit<-cfa(pb, data=d3)
+summary5 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+
+pb <- 'pcynA =~pcyn1+pcyn2+pcyn3+pcyn4
+pcynB =~ pcyn5+pcyn6+pcyn7+pcyn8
+pal =~pal2+pal3+pal4
+pr =~pr1+pr2+pr3+pr4+pr5
+'
+fit<-cfa(pb, data=d3)
+summary6 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+modificationindices(fit,sort=TRUE)
+
+#good fit with 4 factors: cynicism breaks into two subscales:
+# "politicians are manipulative liars" - internal causes of why they're bad
+# and "politics makes people dirty" - external causes of why they're bad 
+# CFI=.947,TLI=.935,RMSEA=.068,SRMR=.068
+
+d3$pcyn_ma <- rowMeans(d3[,c("pcyn1","pcyn2","pcyn3","pcyn4")],na.rm=TRUE)
+describe(d3$pcyn_ma) #M=5.2,SD=1.5
+
+d3$pcyn_im <- rowMeans(d3[,c("pcyn5","pcyn6","pcyn7","pcyn8")],na.rm=TRUE)
+describe(d3$pcyn_im) #M=4.1,SD=1.52
+
+d3$pal <- rowMeans(d3[,c("pal2","pal3","pal4")],na.rm=TRUE)
+describe(d3$pal) #M=4.6,SD=1.38
+
+d3$pr <- rowMeans(d3[,c("pr1","pr2","pr3","pr4","pr5")],na.rm=TRUE)
+describe(d3$pr) #M=4.32,SD=1.15
+
+##Attitudes towards the SMO
+table(d3$smop_support)
+d3$smop_support <- dplyr::recode(d3$smop_support, "Полностью поддерживаю"=5,
+                          "Скорее, поддерживаю"=4,
+                          "В чём-то поддерживаю, в чём-то нет"=3,
+                          "Скорее, не поддерживаю"=2,"Совсем не поддерживаю"=1)
+d3$smop_oppos <- dplyr::recode(d3$smop_support,"1"=5,"2"=4,"3"=3,"4"=2,"5"=1)
+100*table(d3$smop_support) %>% prop.table() #27.9% oppose, 25.4% not sure, 46.7% support
+
+table(d3$smop_att3)
+d3[,c(121:123)] <- lapply(d3[,c(121:123)], as.numeric)
+
+psych::alpha(d3[,c(121:123)]) #alpha=.90
+
+d3$smop_att <- rowMeans(d3[,c(121:123)], na.rm=TRUE)
+describe(d3$smop_att) #M=2.88,SD=1.29
+
+#PANAS
+d3 <- d3 %>%
+  mutate_at(vars(124:135),~dplyr::recode(., "Совсем не испытываю (1)"=1, 
+                                         "Немного (2)"=2,"В какой-то степени (3)"=3,
+                                         "В значительной степени (4)"=4,
+                                         "Очень сильно (5)"=5))
+describe(d3[,c(124:135)])
+
+pnem <- 'pos =~ happy+hope+enthusiasm+pride
+neg =~fear+sad+anger+disgust+contempt+depressed'
+fit<-cfa(pnem, data=d3)
+summary7 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+modificationindices(fit, sort=TRUE)
+
+fa.parallel(d3[,c(124:133)]) #3 factor, 2 components
+pnem <- fa(d3[,c(124:133)],nfactors=3,rotate="oblimin") #3-factor solution much better fit than 2
+fa.diagram(pnem) #depressed loads on both neg.em.factors, but theoretically makes more sense with other "submissive" items
+
+pnem <- 'pos =~ happy+hope+enthusiasm+pride
+neg_sub =~fear+sad+depressed
+neg_dom =~anger+disgust+contempt'
+fit<-cfa(pnem, data=d3)
+summary8 <- summary(fit,fit.measures=TRUE, standardized=TRUE)
+modificationindices(fit, sort=TRUE)
+#acceptable fit: CFI=.916,TLI=.882,RMSEA=.117,SRMR=.066
+
+d3$posem <- rowMeans(d3[,c('happy','hope','enthusiasm','pride')], na.rm=TRUE)
+describe(d3$posem) #M=2.19, SD=1.04
+
+d3$neg_sub <- rowMeans(d3[,c('fear','sad','depressed')], na.rm=TRUE)
+describe(d3$neg_sub) #M=2.88, SD=1.11
+
+d3$neg_dom <- rowMeans(d3[,c('anger','disgust','contempt')], na.rm=TRUE)
+describe(d3$neg_dom) #M=2.34, SD=1.25
+
+##Guilt and shame
+
+d3 <- d3 %>%
+  mutate_at(vars(136:147),~dplyr::recode(., "1Абсолютно не согласен"=1, 
+                                         "2"=2,"3"=3,"4"=4,
+                                         "5Абсолютно согласен"=5))
+describe(d3[,c(136:147)])
+
+psych::alpha(d3[,c("cguilt1","cguilt2","cguilt3")]) #alpha=.89
+psych::alpha(d3[,c("mshame1","mshame2","mshame3","mshame4")]) #alpha=.93
+psych::alpha(d3[,c("ishame1","ishame2","ishame3","ishame4","ishame5")]) #alpha=.94
+
+d3$cguilt <- rowMeans(d3[,c("cguilt1","cguilt2","cguilt3")], na.rm=TRUE)
+describe(d3$cguilt) #N=400, M=2.97,SD=1.31
+d3$cguiltf <- ifelse(is.na(d3$cguilt)&(d3$guilt==1),0,d3$cguilt)
+describe(d3$cguiltf) #after imputation, M=1.23,SD=1.69
+
+d3$mshame <- rowMeans(d3[,c("mshame1","mshame2","mshame3","mshame4")], na.rm=TRUE)
+describe(d3$mshame) #N=349, M=3.02, SD=1.37
+d3$mshamef <- ifelse(is.na(d3$mshame)&(d3$shame==1),0,d3$mshame)
+describe(d3$mshamef) #after imputation, M=1.09,SD=1.67
+
+d3$ishame <- rowMeans(d3[,c("ishame1","ishame2","ishame3","ishame4","ishame5")], na.rm=TRUE)
+describe(d3$ishame) #N=349, M=3.13, SD=1.34
+d3$ishamef <- ifelse(is.na(d3$ishame)&(d3$shame==1),0,d3$ishame)
+describe(d3$ishamef) #after imputation, M=1.13,SD=1.7
+
+t.test(d3$cguilt,d3$mshame,paired=TRUE)
+a <- subset(d3,!is.na(d3$cguilt) & !is.na(d3$mshame))
+describe(a$mshame)
+t.test(d3$cguilt,d3$ishame,paired=TRUE)
+
+##VIBs
+d3[,c(148:168)] <- lapply(d3[,c(148:168)], as.numeric)
+describe(d3[,c(148:168)])
+
+cor(d3[,c(148:168)],use="complete.obs")
+psych::alpha(d3[,c("vib_un1","vib_un2","vib_un3")])
+#correlations
+#SE:.49, CO:.62, TR:.88, BE:.49, UN: alpha=.75, SD:.63, ST:.66, HE:.57, AC:.67, PO:.52
+
+d3$vib_se <- rowMeans(d3[,c("vib_se1","vib_se2")],na.rm = TRUE)
+d3$vib_co <- rowMeans(d3[,c("vib_co1","vib_co2")],na.rm = TRUE)
+d3$vib_tr <- rowMeans(d3[,c("vib_tr1","vib_tr2")],na.rm = TRUE)
+d3$vib_be <- rowMeans(d3[,c("vib_be1","vib_be2")],na.rm = TRUE)
+d3$vib_un <- rowMeans(d3[,c("vib_un1","vib_un2","vib_un3")],na.rm = TRUE)
+d3$vib_sd <- rowMeans(d3[,c("vib_sd1","vib_sd2")],na.rm = TRUE)
+d3$vib_st <- rowMeans(d3[,c("vib_st1","vib_st2")],na.rm = TRUE)
+d3$vib_he <- rowMeans(d3[,c("vib_he1","vib_he2")],na.rm = TRUE)
+d3$vib_ac <- rowMeans(d3[,c("vib_ac1","vib_ac2")],na.rm = TRUE)
+d3$vib_po <- rowMeans(d3[,c("vib_po1","vib_po2")],na.rm = TRUE)
+
+d3$vib_MRAT <- rowMeans(d3[,c(221:230)],na.rm = TRUE)
+
+d3$vib_sei <- d3$vib_se-d3$vib_MRAT
+d3$vib_coi <- d3$vib_co-d3$vib_MRAT
+d3$vib_tri <- d3$vib_tr-d3$vib_MRAT
+d3$vib_bei <- d3$vib_be-d3$vib_MRAT
+d3$vib_uni <- d3$vib_un-d3$vib_MRAT
+d3$vib_sdi <- d3$vib_sd-d3$vib_MRAT
+d3$vib_sti <- d3$vib_st-d3$vib_MRAT
+d3$vib_hei <- d3$vib_he-d3$vib_MRAT
+d3$vib_aci <- d3$vib_ac-d3$vib_MRAT
+d3$vib_poi <- d3$vib_po-d3$vib_MRAT
+
+##SMO past behavior
+
+d3[,c("pb_smop_opp","pb_smop_supp")] <- lapply(d3[,c("pb_smop_opp","pb_smop_supp")], as.numeric)
+100*table(d3$pb_smop_supp) %>% prop.table() #75.9% did nothing to support
+100*table(d3$pb_smop_opp) %>% prop.table() #83% did nothing to oppose
+
+##motivation
+
+d3 <- d3 %>%
+  mutate_at(vars(171:174),~dplyr::recode(., "Определенно не по этой причине"=1, 
+                                         "Не по этой причине"=2,
+                                         "Чаще не по этой причине"=3,
+                                         "Иногда по этой причине, иногда нет"=4,
+                                         "Чаще по этой причине"=5,
+                                         "По этой причине"=6,
+                                         "Определенно по этой причине"=7))
+describe(d3[,c(171:174)])
+
+d3$rel_autonomy <- d3$motiv4+d3$motiv3-d3$motiv2-d3$motiv1
+describe(d3$rel_autonomy) #M=2.14, SD=3.6
+
+d3$motiv_mean <- rowMeans(d3[,c("motiv1","motiv2","motiv3","motiv4")])
+d3$motiv1_i <- d3$motiv1 - d3$motiv_mean + 5.5
+d3$motiv2_i <- d3$motiv2 - d3$motiv_mean + 5.5
+d3$motiv3_i <- d3$motiv3 - d3$motiv_mean + 5.5
+d3$motiv4_i <- d3$motiv4 - d3$motiv_mean + 5.5
+
+describe(d3[,c("motiv1_i","motiv2_i","motiv3_i","motiv4_i")])
+
+d3$motiv1_iR <- 10.75-d3$motiv1_i
+d3$motiv2_iR <- 11-d3$motiv2_i
+describe(d3[,c("motiv1_iR","motiv2_iR","motiv3_i","motiv4_i")])
+
+psych::alpha(d3[,c("motiv1_iR","motiv2_iR","motiv3_i","motiv4_i")], max=10) #alpha = .56
+
+cor(d3[,c("motiv1_iR","motiv2_iR","motiv3_i","motiv4_i")], use="complete.obs")
+
+##SMO behavioral intention
+
+d3 <- d3 %>%
+  mutate_at(vars(175:177,179:181),~dplyr::recode(., "1Абсолютно не согласен"=1, 
+                                         "2"=2,"3"=3,"4"=4,
+                                         "5Абсолютно согласен"=5))
+
+psych::alpha(d3[,c(175:177)]) #alpha for bi_support=.97
+psych::alpha(d3[,c(179:181)]) #alpha for bi_oppose=.95
+
+d3$bi_supp <- rowMeans(d3[,c(175:177)],na.rm=TRUE)
+describe(d3$bi_supp) #M=1.89,SD=1.21
+
+d3$bi_oppos <- rowMeans(d3[,c(179:181)],na.rm=TRUE)
+describe(d3$bi_oppos) #M=1.53,SD=1.28
+100*table(d3$bi_oppos)%>% prop.table()
+
+d3 <- d3 %>%
+  mutate_at(vars(178,182),~dplyr::recode(., "совсем не вероятно (1)"=1,
+                                         "2"=2,"3"=3,"4"=4,"5"=5,"6"=6,"7"=7,"8"=8,
+                                         "9"=9,"(практически) точно (10)"=10))
+100*table(d3$bp_smop_supp)%>% prop.table()
+100*table(d3$bp_smop_opp)%>% prop.table()
+
+cor.test(d3$bi_oppos,d3$bp_smop_opp)
+cor.test(d3$bi_supp,d3$bp_smop_supp)
+
+
+d3$bp_smop_oppR <- (d3$bp_smop_opp/10)*5 
+d3$bp_smop_suppR <- (d3$bp_smop_supp/10)*5 
+describe(d3$bp_smop_oppR)
+
+psych::alpha(d3[,c(175:177,253)]) #alpha for future behavior (4 items)=.97
+psych::alpha(d3[,c(179:181,252)]) #alpha for future behavior (4 items)=.95
+
+d3$fb_support <- rowMeans(d3[,c(175:177,253)], na.rm = TRUE) #future behavior 4 items
+d3$fb_oppose <- rowMeans(d3[,c(179:181,252)], na.rm=TRUE)
+
+describe(d3$fb_support) #M=1.79,SD=1.22
+describe(d3$fb_oppose) #M=1.41, SD=1
+
+writexl::write_xlsx(d3,"Data_clean.xlsx")
+
+
+
+
+```
+
+# Guilt, shame, and anti-war action in an authoritarian country at war {.unnumbered}
+
+On February 24, 2022, the country with the biggest nuclear warhead inventory in the world, Russia, invaded the neighboring Ukraine. Although the Russia-Ukraine war started in 2014 with the occupation of Crimea, Russian officials consistently denied their involvement in the region. Eight years later, to the surprise of most analysts and pundits, Russia openly invaded Ukraine on four fronts: North (Kyiv), North-East (Kharkiv), South-East (Donetsk and Luhansk), and South (Crimea). The official ideological narrative supporting the invasion was provided in a televised speech by Vladimir Putin preceding the invasion by mere minutes. In this speech, Putin falsely claimed that Ukraine is governed by a group of neo-Nazis who hold the population hostage and persecute the Russian speakers in the country. The announced goals of this “special military operation” (the use of the word “war” soon after will be criminalized in Russia) were the “denazification” and “demilitarization” of Ukraine. 
+
+In the first days following the invasion, thousands of Russians take  to the streets to protest. However, nearly 15.000 people are detained in the first weeks following the invasion [@OVDInfo2022] and the street protests die down quickly. New laws are introduced regularly to further supress protest, among them the law about the “discreditation of the Russian armed forces”, which essentially prohibits any anti-war statements [@Eckel2022]. After the introduction of this law, the few remaining independent media outlets either stop covering the war or leave the country [@MoscowTimes2022].
+
+Against the backdrop of the reports of war crimes committed by the Russian armed forces in Ukraine and the repression of all dissent in Russia, the discussions among the well-educated Russians, many of whom left the country, often revolve around the topics of collective responsibility, guilt, and shame [e.g., @Grigoryan2022; @Treus2022]. As these discussions take shape, it is becoming clear that the majority view, even among the Russian “intelligentsia”, is that feelings of guilt and shame are inappropriate or even harmful [@Kynev2022]. For example, in a series of interviews with prominent Russian intellectuals and artists, Ekaterina Gordeeva, a journalist with more than 1.5 million subscribers on YouTube, asks each of her guests whether they feel guilt or shame for what is happening in the country; with very few exceptions, the answer is “no” [@Gordeeva2022]. The push-back against the idea of feeling guilt or shame for what your country is doing is so strong that soon a new hashtag #IamNotAshamed (#МнеНеСтыдно) becomes popular.
+
+Research on group-based guilt and shame and collective action has been predominantly carried out in Western democracies. Although there is strong evidence that experiencing these emotions can motivate people to engage in collective action and support intergroup reconciliation efforts [@Hakim2021; @Lickel2011], research on preconditions for experiencing these emotions and on the power of these emotions to motivate collective action in authoritarian regimes is lacking. Is the sense that you have some control over the political events in your country a necessary precondition for feeling group-based guilt and shame? Are these feelings relevant in authoritarian regimes? Can they motivate behavior in such contexts? We set out to address these questions in Russia, an authoritarian country at war. 
+
+In this paper, we present the results of a large-scale, preregistered online survey of Russian population conducted in August 2022. We aim to address the following three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? 
+
+# Theoretical background {.unnumbered}
+\allsectionsfont{\raggedright}
+## Group-based guilt and shame {.unnumbered}
+
+Group-based emotions are emotions elicited by actions of fellow ingroup members [@Iyer2008]. Social groups are necessary for human survival and both positive and negative group-based emotions can help regulate the behavior of group members, promoting desirable (e.g., through pride) and inhibiting undesirable (e.g., through guilt) behaviors. The function of group-based guilt and shame is to ensure good conduct of group members by signaling instances of norm violations and motivating restorative action [@Lickel2011]. 
+
+Although the emotions of guilt and shame share many similarities [@Smith1985] and are often experienced simultaneously [@Schmader2006], they also have some important differences in appraisals and motivations. The feeling of shame is likely to occur when the ingroup member’s negative actions reflect poorly on the group identity itself, whereas the feeling of guilt – when one feels collective responsibility for the negative actions of group members. As a result, shame is expected to motivate avoidant behaviors (hiding, distancing), whereas guilt is expected to motivate approach behaviors (repairing, restoring) [@Lickel2011; @Tangney2007].
+
+This prediction that guilt would motivate reconciliatory behavior, whereas shame would motivate avoidance is not well supported by the empirical evidence available so far. A recent meta-analysis of group-based emotions ([@Hakim2021], 101 effect sizes, 58 samples, N = 10,305) found that guilt, shame, and anger are equally predictive of support for reparations, with a strong average effect size of r = .44 and no significant differences between emotions. Furthermore, the distinction between moral shame and image shame [@Allpress2010; @Rees2013] helps explain which elements of shame are predictive of reconciliatory behaviors and which are predictive of avoidant behaviors. This distinction is made based on different appraisals that the feeling of shame can be accompanied with: we feel moral shame when the group members’ behavior violates important moral standards or values of the group, and we feel image shame when the group members’ behavior tarnishes the ingroup’s reputation [@Rees2013]. Studies that make the distinction between moral shame and image shame find that moral shame is predictive of reconciliatory behaviors on par or more strongly than guilt, whereas image shame is predictive of distancing and avoidance  [@Allpress2010; @Allpress2014; @Grigoryan2017; @Nooitgedagt2021; @Rees2013]. We therefore expect that moral shame and guilt, but not image shame, will predict a stronger intention to act against the war in Russia (H1).
+
+## Acknowledgment of responsibility as a precondition for experiencing guilt and shame {.unnumbered}
+
+Although rarely studied, the acknowledgment of collective responsibility for the ingroup’s wrongdoings is a necessary precondition for experiencing group-based guilt and shame. In a series of experiments, @Cehajic-Clancy2011 showed that guilt mediates the effect of an intervention designed to increase acknowledgment of responsibility for the ingroup’s wrongdoing and support for reparations. Consistent with this finding, a recent set of studies showed that beliefs of group malleability shape experiences of guilt and shame [@Weiss-Klayman2020]: participants who believed that groups can change and those who thought that others believe that groups can change (meta-beliefs) showed higher levels of guilt and shame.
+
+Applying these findings to international conflicts where the ingroup is the country, we argue that experiences of group-based guilt and shame are conditional upon beliefs that citizens have control over and responsibility for their governments’ decisions. This belief would form the foundation for acknowledgment of collective responsibility, which would then translate into the feelings of group-based guilt and shame and, consequently, anti-war or reconciliatory behavior. We expect that the higher the belief that citizens have control over political decisions in their country, the stronger are the feelings of guilt and shame (H2). We test this prediction by measuring different constructs that tap into the notion of political control and responsibility: political alienation [@Olsen1969], political cynicism [@Pattyn2012], democratic values [@CanettiNisim2007], and political responsibility.
+
+## Collective action in an authoritarian state {.unnumbered}
+
+The integrative social identity model of collective action (SIMCA) – perhaps the most comprehensive and widely used model of collective action in psychology – identifies three key components of collective action: perceived injustice, identity, and efficacy [@Zomeren2008]. In a meta-analysis of more than 180 independent samples, @Zomeren2008 find that each of these three components uniquely predict collective action, with similar effect sizes. A recent extension adds moral beliefs as a key component of the model [@Zomeren2018]. However, most studies of collective action have been conducted in democratic countries, where the cost of political participation is not that high. Moreover, most of these studies focus on political movements related to minority rights and social justice and the generalizability of these findings to political movements aimed at regime change in authoritarian states has not been well studied.
+
+In a series of studies in five non-democratic states (Egypt and Turkey in 2013, Russia, Ukraine, and Hong Kong in 2014), Ayanian and colleagues [@Ayanian2016; @Ayanian2021] show how perceptions of risk in repressive contexts can have counter-intuitive effects on willingness to participate in collective action. While perceived risk can quell collective action through increased fear, it can also spur resistance through increased outrage and heightened feelings of moral obligation. Contributing to this line of research, we will test how guilt and moral shame compare to other predictors of collective action and whether they are predictive of anti-government action in an authoritarian state over and above other emotions and attitude (RQ1). 
+
+\allsectionsfont{\centering}
+# Method {.unnumbered}
+
+All study materials, including the questionnaire, data, and code, can be found on the Open Science Platform: https://osf.io/4pd2v/?view_only=23597fdc19424706818a72fc0df43009. The preregistration protocol is available at https://aspredicted.org/SGV_SBD. 
+
+\allsectionsfont{\raggedright}
+# Sample and procedure {.unnumbered}
+
+We collected a quota sample, representative of the Russian population by gender and age. Participants were recruited via the online crowdsourcing platform Yandex Toloka in August 2022.  This was the only feasible option to collect fully anonymized data in Russia, which was crucial, given that the repercussions for expressing opposition to the war can be severe. Participants received \$ 0.5 (30 RUB) for their participation. A total of N=`r length(d2$start)` participants gave full informed consent to participate in the study. Thirty participants were excluded since they dropped out of the study before completion, and another eight were excluded for failing more than one out of three attention checks. The effective sample size is N=`r length(d3$start)`. 
+
+```{r counting}
+
+gender_table <- table(d3$gender)
+age_range <- range(d3$age)
+residence_table <- table(d3$residence)
+ethn_table <- table(d3$ethn)
+
+```
+
+The sample was balanced by gender (`r round((gender_table[2]/length(d3$start)*100), digits = 1)`% women, `r round((gender_table[1]/length(d3$start)*100), digits = 1)`% men, `r round((gender_table[3]/length(d3$start)*100), digits = 1)`% non-binary or no response) and age cohort (`r age_range[1]` to `r age_range[2]` years old, M=`r round(mean(d3$age), digits = 0)`, SD=`r round(sd(d3$age), digits = 0)`). About 51% of the sample had a tertiary degree (BA or higher) and about 55% said they had lower than average income. All participants were Russian citizens and `r round((residence_table[1]/length(d3$start)*100), digits = 1)`% lived in Russia at the time of data collection. Most (`r round((ethn_table[1]/length(d3$start)*100), digits = 0)`%) identified as ethnic Russian, `r round((ethn_table[2]/length(d3$start)*100), digits = 0)`% as Tatar, about `r round((ethn_table[4]/length(d3$start)*100), digits = 0)`% as Ukrainian, Chuvash, and Bashkir each, and the remaining `r round((ethn_table[7]/length(d3$start)*100), digits = 0)`% chose the “other” category.
+
+<!-- check dollar/percentages/mean ect. -->
+
+## Measures {.unnumbered}
+
+```{r mean_behaviour}
+
+#mean responses on behavioral intention questionnaires for each participant stored in means_bi 
+means_bi <- NULL
+for (i in 1:length(d3$bi_smop_opp1)) {
+  means_bi[i] <- round((d3$bi_smop_opp1[i] + d3$bi_smop_opp2[i] + d3$bi_smop_opp3[i])/3, digits = 0)
+}
+```
+
+
+
+
+***Anti-war actions***. We measured past behavior by asking how many of the eight political actions listed did the participant do to oppose the war in Ukraine (e.g., “signing a petition”, “participating in a demonstration”, etc.). The responses ranged from 0 to 8, with `r round(table(d3$pb_smop_opp)[1]/length(d3$pb_smop_opp)*100, digits = 0)`% of participants reporting zero actions. Behavioral intention to participate in any political action against the war was measured with 3 items (“I want to/intend to/plan to take part in political action against the war in Ukraine”), on a 5-point scale from 1 – ‘ Completely disagree’ to 5 – ‘Completely agree’ ($\alpha$ = .95; `r round(table(means_bi)[1]/length(d3$bi_smop_opp1)*100, digits = 0)`% of participants had a mean score of 1). Finally, we asked about the probability that the person will take any political action, from 1 – highly improbable, 10 – (almost) certainly (`r round(table(d3$bp_smop_opp)[1]/length(d3$bp_smop_opp)*100, digits = 0)`% answered ‘1’).
+
+
+
+***Attitude towards the war*** was measured with 3 items, on a bipolar 5-pt Osgood-style scale: “The special military operation in Ukraine is…”: bad-good, harmful-beneficial, useless-useful ($\alpha$ = .90, M = `r round(mean(d3$smop_att, na.rm = TRUE), digits = 2)`, SD = `r round(sd(d3$smop_att, na.rm = TRUE), digits = 2)`). 
+
+***Political beliefs.*** We used four different scales to capture participants’ beliefs about political agency and the role of democracy. All items were assessed on a 7-point scale from 1 – ‘Absolutely disagree’ to 7 – ‘Absolutely agree’.
+
+*Support for democratic values* was measured with a 6-item scale from @CanettiNisim2007. Example item: "Every citizen has the right to take his convictions to the street if necessary" ($\alpha$ = .69).  
+
+ *Political alienation* was measured with four items from @Olsen1969. Example item: "There is not much that people like me can do to influence actions of the government" ($\alpha$ = .73). 
+ 
+*Political cynicism* was measured with eight items from @Pattyn2012. Example item: "Politicians pretend to care more about people than they really do" ($\alpha$ = .91).
+
+*Political responsibility.* We formulated five items aimed at capturing participants’ beliefs about political responsibility: “The government will face difficulties if it tries to do something that most people in the country do not agree with”, “Participation in political life is a responsibility of every person before themselves and their fellow countrymen”, “If I see that the country is going in the wrong direction, it is my duty to get my voice heard by the government”, “The citizens of Russia are accountable for the actions of their government”, “If the majority of the citizens are against some decision made by the government, they can influence that decision” ($\alpha$ = .71). 
+
+Since the constructs of political alienation, cynicism, and responsibility are closely related and none of these scales were used in a Russian sample before, we conducted a confirmatory factor analysis (CFA) to test whether the 3-factor structure could be confirmed. The 3-factor model showed unsatisfactory fit to the data (CFI = `r round(summary5$fit[9], digits = 3)`, RMSEA = `r round(summary5$fit[17], digits = 3)`, SRMR = `r round(summary5$fit[25], digits = 3)`). An exploratory factor analysis suggested that a 4-factor model, with the political cynicism scale split in two, fits the data better. CFA confirmed this result: a model with 4 factors showed a good fit to the data (CFI = `r round(summary6$fit[9], digits = 3)`, RMSEA = `r round(summary6$fit[17], digits = 3)`, SRMR = `r round(summary6$fit[25], digits = 3)`). This modified model includes the political responsibility factor with 5 items, political alienation factor with 3 items (the item “I believe public officials don't care much what people like me think” was removed since it loaded on both political alienation and cynicism subscales), and two facets of political cynicism: “politicians are evil” (4 items, e.g., “Politicians are only interested in getting and maintaining power”) and “politics is evil” (4 items, e.g., “No man can hope to stay honest once he enters politics”).
+
+***Positive and negative emotions.*** We measured emotions that participants experience when thinking about the war using the short version of the Positive and Negative Affect Scale [@Watson1988]. Twelve emotions (fear, joy, sadness, hope, anger, enthusiasm, disgust, pride, contempt, depression, guilt, and shame) were rated on a 5-pt scale (1 – ‘do not experience at all’ to 5 – ‘extremely’). If participants answered 2 or higher to the guilt and shame questions, they were shown questionnaires for group-based guilt and/or shame, respectively (we took this precaution because of negative prior experiences when using these measures in Russia; see @Grigoryan2018; @Grigoryan2017, for details). We tested the two-factor structure of the PANAS scale (positive and negative affect, excluding guilt and shame) using CFA and found the fit to be unsatisfactory (CFI = `r round(summary7$fit[9], digits = 3)`, RMSEA = `r round(summary7$fit[17], digits = 3)`, SRMR = `r round(summary7$fit[25], digits = 3)`). A 3-factor structure with positive emotions (joy, hope, enthusiasm), negative dominant emotions (anger, disgust, contempt) and negative submissive emotions (fear, sadness, depression) showed a satisfactory fit to the data (CFI = `r round(summary8$fit[9], digits = 3)`, RMSEA = `r round(summary8$fit[17], digits = 3)`, SRMR = `r round(summary8$fit[25], digits = 3)`) [see @Mehrabian1980], for the distinction between dominant and submissive emotions). 
+
+***Group-based guilt and shame.*** We used the measures of group-based guilt, image shame, and moral shame developed by @Rees2013, Russian adaptation by @Grigoryan2017. All items are answered on a 5-pt scale from 1 – ‘Completely disagree’ to 5 – ‘Completely agree’. Guilt was measured with 3 items (e.g., “I feel guilty for the manner in which Ukrainian people have been treated by Russians”, $\alpha$ = .89), image shame with 5 items (“I feel ashamed when I realize that other countries might think of Russia negatively because of our involvement in Ukraine”, $\alpha$ = .94), and moral shame with 4 items (“I feel ashamed because Russia’s actions with regard to Ukraine have been immoral”, $\alpha$ = .93). All missing values were replaced with zeros, since participants who didn’t see the scale were the ones who reported no feelings of guilt or shame in the PANAS. 
+
+```{r mainanalysis, echo=FALSE, include=FALSE}
+
+d3 <- readxl::read_xlsx("Data_clean.xlsx")
+
+###Q1. Are feelings of group-based guilt and shame conditional 
+#upon beliefs that people can influence the actions of their governments?
+#preregistered hypotheses H1a-H1d
+
+##linear regressions (Table 1)
+
+h1ms <- lm(mshamef~demv+pcyn_ma+pcyn_im+pal+pr,d3)
+summary(h1ms)
+h1ms2 <- lm(scale(mshamef)~scale(demv)+scale(pcyn_ma)+scale(pcyn_im)+scale(pal)+scale(pr),d3)
+summary(h1ms)
+
+h1is <- lm(ishamef~demv+pcyn_ma+pcyn_im+pal+pr,d3)
+summary(h1is)
+h1is2 <- lm(scale(ishamef)~scale(demv)+scale(pcyn_ma)+scale(pcyn_im)+scale(pal)+scale(pr),d3)
+summary(h1is)
+
+
+h1g <- lm(cguiltf~demv+pcyn_ma+pcyn_im+pal+pr,d3)
+summary(h1g)
+h1g2 <- lm(scale(cguiltf)~scale(demv)+scale(pcyn_ma)+scale(pcyn_im)+scale(pal)+scale(pr),d3)
+summary(h1g)
+
+##path model (SM, Table S1)
+
+h1 <- 'cguiltf ~ demv+pcyn_ma+pcyn_im+pal+pr
+ishamef ~ demv+pcyn_ma+pcyn_im+pal+pr
+mshamef ~ demv+pcyn_ma+pcyn_im+pal+pr
+demv~~pcyn_ma+pcyn_im+pal+pr
+pcyn_ma~~pcyn_im+pal+pr
+pcyn_im~~pal+pr
+pal~~pr
+'
+fit <- sem(h1, data=d3, estimator="MLR")
+summary(fit,fit.measures=TRUE, standardized=TRUE)
+#only democratic values and belief that politicians are bad predict higher guilt and shame 
+
+
+##zero-inflated negative binomial regressions (SM, Table S2)
+
+#make integers to be used in negbin
+d3$mshamefi <- round(d3$mshamef)
+d3$ishamefi <- round(d3$ishamef)
+d3$cguiltfi <- round(d3$cguiltf)
+
+100*table(d3$cguiltfi)%>% prop.table()
+
+
+h1a <- zeroinfl(mshamefi~demv+pcyn_ma+pcyn_im+pal+pr,d3,dist="negbin")
+summary(h1a)
+h1b <- zeroinfl(ishamefi~demv+pcyn_ma+pcyn_im+pal+pr,d3,dist="negbin")
+summary(h1b)
+h1c <- zeroinfl(cguiltfi~demv+pcyn_ma+pcyn_im+pal+pr,d3,dist="negbin")
+summary(h1c)
+
+###Q2. Are guilt and shame predictive of anti-government action 
+#in an authoritarian state?
+#prereg. H3 + past behavior and probability to act
+
+##past behavior: linear (Table 2)
+table(d3$pb_smop_opp)
+h3a <- lm(pb_smop_opp ~ cguiltf+ishamef+mshamef,data = d3)
+summary(h3a)
+h3a2 <- lm(scale(pb_smop_opp) ~ scale(cguiltf)+scale(ishamef)+scale(mshamef),data = d3)
+summary(h3a)
+
+##past behavior: z-i negbin (Table S3)
+h3a3 <- zeroinfl(pb_smop_opp ~ cguiltf+ishamef+mshamef,data = d3,dist="negbin")
+summary(h3a)
+
+##behavioral intention (3 items): linear (Table 2)
+table(d3$bi_oppos)
+h3b <- lm(bi_oppos ~ cguiltf+ishamef+mshamef,data = d3)
+summary(h3b)
+h3b2 <- lm(scale(bi_oppos) ~ scale(cguiltf)+scale(ishamef)+scale(mshamef),data = d3)
+summary(h3b)
+
+##behavioral intention: z-i negbin (Table S3)
+d3$bi_opp0 <- d3$bi_oppos-1
+d3$bi_opp0 <- round(d3$bi_opp0)
+table(d3$bi_opp0)
+h3b3 <- zeroinfl(bi_opp0 ~ cguiltf+ishamef+mshamef, data = d3,dist="negbin")
+summary(h3b)
+
+##probability of doing something in the future: linear (Table 2)
+table(d3$bp_smop_opp)
+h3c <- lm(bp_smop_opp ~ cguiltf+ishamef+mshamef, data = d3)
+h3coutput <- summary(h3c)
+h3c2 <- lm(scale(bp_smop_opp) ~ scale(cguiltf)+scale(ishamef)+scale(mshamef), data = d3)
+summary(h3c)
+
+##probability of doing something in the future: z-i negbin (Table S3)
+d3$bp_smop_opp0 <- d3$bp_smop_opp-1
+table(d3$bp_smop_opp0)
+h3c3 <- zeroinfl(bp_smop_opp0 ~ cguiltf+ishamef+mshamef, data = d3,dist="negbin")
+summary(h3c)
+
+##Identity as a moderator (additional exploratory analysis, not in the paper)
+h3am <- lm(pb_smop_opp ~ cguiltf*NatId+ishamef*NatId+mshamef*NatId,data = d3)
+summary(h3am)
+plot_model(h3am, type = "int",mdrt.values = "meansd")
+
+h3bm <- lm(bi_oppos ~ cguiltf*NatId+ishamef*NatId+mshamef*NatId,data = d3)
+summary(h3bm)
+
+h3cm <- lm(bp_smop_opp ~ cguiltf*NatId+ishamef*NatId+mshamef*NatId,data = d3)
+summary(h3cm)
+
+##Q3. Is moral shame a better predictor of future anti-war action 
+#than other emotions and attitudes? Prereg. RQ2
+
+#combine intention and probability into future behavior
+table(d3$bi_oppos)
+table(d3$bp_smop_opp)
+d3$bi_oppos_sd <- scale(d3$bi_oppos)
+d3$bp_oppos_sd <- scale(d3$bp_smop_opp)
+correlation1 <- cor.test(d3$bi_oppos_sd,d3$bp_oppos_sd) #r=.86***
+
+d3$fb_oppos <- rowMeans(d3[,c("bi_oppos_sd","bp_oppos_sd")],na.rm=T)
+describe(d3$fb_oppos)
+
+#linear model predicting future behavior (Table 3)
+h4 <- lm(fb_oppos ~ posem+neg_dom+neg_sub+smop_att+mshamef+ishamef+cguiltf,d3)
+summary(h4)
+
+options("scipen"=100, "digits"=4)
+h42 <- lm(fb_oppos ~ scale(posem)+scale(neg_dom)+scale(neg_sub)+
+            scale(smop_att)+scale(mshamef)+scale(ishamef)+scale(cguiltf),d3)
+summary(h42)
+
+#z-i negbin model predicting future behavior (SM, Table S4)
+d3$bi_smop_opp1R <- d3$bi_smop_opp1-1
+d3$bi_smop_opp2R <- d3$bi_smop_opp2-1
+d3$bi_smop_opp3R <- d3$bi_smop_opp3-1
+d3$bp_smop_oppR <- d3$bp_smop_opp-1
+
+d3$fb_oppos_count <- rowSums(d3[,c("bi_smop_opp1R","bi_smop_opp2R","bi_smop_opp3R",
+                                   "bp_smop_oppR")],na.rm=T)
+table(d3$fb_oppos_count)
+100*table(d3$fb_oppos_count)%>% prop.table()
+
+h5 <- zeroinfl(fb_oppos_count ~ posem+neg_dom+neg_sub+smop_att+
+                 +mshamef+ishamef+cguiltf,d3,dist="negbin")
+summary(h5)
+
+
+```
+
+\allsectionsfont{\centering}
+# Results {.unnumbered}
+
+We will present the results in three parts, each addressing one of the three research questions: (1) are feelings of group-based guilt and shame conditional upon beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Following the preregistration protocol, we use linear regression models to address these questions. However, since the outcome variables in all cases have zero-inflated distributions (most participants said that they do not feel guilt or shame and did not and are not planning to take any political action against the war), we tested the robustness of the findings using zero-inflated negative binomial regressions. All additional analyses are presented in the Supplementary Materials.
+
+\allsectionsfont{\raggedright}
+## Part 1. Are feelings of group-based guilt and shame conditional upon beliefs that people can influence the actions of their governments? {.unnumbered}
+
+In a series of linear regressions, we tested whether political beliefs predict experiences of group-based shame and guilt. As Table 1 indicates, participants with stronger democratic values and those with stronger belief that politicians are evil reported stronger experiences of group-based guilt, moral shame, and image shame. The effect size of democratic values was at least twice as strong as that of political cynicism ($\beta$ $\approx$ .40 vs. $\beta$ $\approx$ .15). Political responsibility beliefs also predicted guilt, albeit weakly. We ran a path model to account for correlations between the different political beliefs and between the three emotions (Table S1, SM).  The results were essentially identical. Overall, political beliefs explained 22-26% of variance in experiences of group-based guilt and shame and the endorsement of democratic values was the main driver of these experiences. The results of the zero-inflated models (Table S2, SM) were essentially identical when predicting strength of the emotions. Only democratic values predicted the occurrence of emotions (zero vs. non-zero scores).
+
+## Table 1 {.unnumbered}
+
+Predicting group-based guilt and shame from political beliefs
+
+```{r Table1, echo = FALSE}
+
+#save summary of h1ms/h1is/h1g
+summary_tablems <- summary(h1ms)
+summary_tableis <- summary(h1is)
+summary_tableg <- summary(h1g)
+
+rms_table1 <- NULL
+rms_table1[1] <- summary_tablems$r.squared
+rms_table1[2] <- summary_tableis$r.squared
+rms_table1[3] <- summary_tableg$r.squared
+
+#create matrix to contain the numbers of table 1
+table1_numbers <- data.frame(matrix(nrow=7, ncol=12))
+#add beta ms
+table1_numbers[1:6,1] <- round(h1ms2$coefficients, digits = 2)
+#add b ms
+table1_numbers[1:6,2] <- round(h1ms$coefficients, digits = 2)
+#add se ms
+table1_numbers[1:6,3] <- round(summary_tablems$coefficients[1:6,2], digits = 2)
+#add p values ms
+table1_numbers[1:6,4] <- format.pval(summary_tablems$coefficients[1:6,4], digits = 2, eps = 0.001, nsmall = 3)
+
+#add beta is
+table1_numbers[1:6,5] <- round(h1is2$coefficients, digits = 2)
+#add b is
+table1_numbers[1:6,6] <- round(h1is$coefficients, digits = 2)
+#add se is
+table1_numbers[1:6,7] <- round(summary_tableis$coefficients[1:6,2], digits = 2)
+#add p values is
+table1_numbers[1:6,8] <- format.pval(summary_tableis$coefficients[1:6,4], digits = 2, eps = 0.001, nsmall = 3)
+
+#add beta g
+table1_numbers[1:6,9] <- round(h1g2$coefficients, digits = 2)
+#add b g
+table1_numbers[1:6,10] <- round(h1g$coefficients, digits = 2)
+#add se g
+table1_numbers[1:6,11] <- round(summary_tableg$coefficients[1:6,2], digits = 2)
+#add p values g
+table1_numbers[1:6,12] <- format.pval(summary_tableg$coefficients[1:6,4], digits = 2, eps = 0.001, nsmall = 3)
+
+table1_numbers[7,c(2,6,10)] <- rms_table1
+table1_numbers[7,c(1,3,4,5,7,8,9,11,12)] <- ' '
+
+rownames(table1_numbers) <- c("Intercept", "Democratic Values", "Political Cynicism (politicians)", "Political Cynicism (politics)", "Political Alienation", "Political Responsibility","R$^{2}$")
+
+colnames(table1_numbers) <- c("$\\beta$", "$b$", "$SE$", "$p$", "$\\beta$", "$b$", "$SE$", "$p$", "$\\beta$", "$b$", "$SE$", "$p$")
+
+library(kableExtra)
+     
+knitr::kable(table1_numbers, align='lcccccccccccc', booktabs = TRUE, escape = FALSE) %>% 
+  kableExtra::kable_styling(font_size = 8, latex_options = "HOLD_position") %>% 
+  kableExtra::add_header_above(c("", "Moral Shame" = 4, "Image Shame" = 4, "Guilt" = 4)) %>%
+  row_spec(6,hline_after=T)
+
+
+  
+
+```
+
+## Part 2. Are guilt and shame predictive of anti-government action in an authoritarian state? {.unnumbered}
+
+In a series of linear regressions, we tested whether guilt, image shame, and moral shame are predictive of anti-war actions in the past and in the future. Only moral shame was consistently related to anti-war action and the results were consistent in linear (Table 2) and zero-inflated negative binomial models (Table S3, SM). Group-based guilt and shame explained about 18% of variance in past behavior and about 40% of variance in future behavior.
+
+## Table 2 {.unnumbered}
+
+Predicting anti-war action from group-based guilt and shame
+
+```{r Table2}
+
+#save summary of h3a/h3b/h3c
+summary_table3a <- summary(h3a)
+summary_table3b <- summary(h3b)
+summary_table3c <- summary(h3c)
+
+#create matrix to contain the numbers of table 2
+table2_numbers <- matrix(nrow=4, ncol=12)
+#add beta 3a
+table2_numbers[1:4,1] <- round(h3a2$coefficients, digits = 2)
+#add b ms
+table2_numbers[1:4,2] <- round(h3a$coefficients, digits = 2)
+#add se ms
+table2_numbers[1:4,3] <- round(summary_table3a$coefficients[1:4,2], digits = 2)
+#add p values ms
+table2_numbers[1:4,4] <- format.pval(summary_table3a$coefficients[1:4,4], digits = 2, eps = 0.001, nsmall = 3)
+
+#add beta 3b
+table2_numbers[1:4,5] <- round(h3b2$coefficients, digits = 2)
+#add b is
+table2_numbers[1:4,6] <- round(h3b$coefficients, digits = 2)
+#add se is
+table2_numbers[1:4,7] <- round(summary_table3b$coefficients[1:4,2], digits = 2)
+#add p values is
+table2_numbers[1:4,8] <- format.pval(summary_table3b$coefficients[1:4,4], digits = 2, eps = 0.001, nsmall = 3)
+
+#add beta 3c
+table2_numbers[1:4,9] <- round(h3c2$coefficients, digits = 2)
+#add b g
+table2_numbers[1:4,10] <- round(h3c$coefficients, digits = 2)
+#add se g
+table2_numbers[1:4,11] <- round(summary_table3c$coefficients[1:4,2], digits = 2)
+#add p values g
+table2_numbers[1:4,12] <- format.pval(summary_table3c$coefficients[1:4,4], digits = 2, eps = 0.001, nsmall = 3)
+
+rownames(table2_numbers) <- c("Intercept", "Guilt", "Image Shame", "Moral Shame")
+
+colnames(table2_numbers) <- c("$\\beta$", "b", "SE", "p", "$\\beta$", "b", "SE", "p", "$\\beta$", "b", "SE", "p")
+
+knitr::kable(table2_numbers, booktabs = TRUE, escape = FALSE) %>% 
+  kableExtra::kable_styling(font_size = 8, latex_options = "HOLD_position") %>% 
+  kableExtra::add_header_above(c("", "Past Behaviour" = 4, "Behavioural Intention" = 4, "Action Probability" = 4))
+
+```
+
+## Part 3. Is moral shame a better predictor of future anti-war action than other emotions and attitudes? {.unnumbered}
+
+```{r table3-numbers}
+#save summary of h4
+summary_tableh4 <- summary(h4)
+
+#create matrix to contain the numbers of table 1
+table3_numbers <- matrix(nrow=8, ncol=5)
+#add beta 
+table3_numbers[1:8,1] <- round(h42$coefficients, digits = 2)
+#add b 
+table3_numbers[1:8,2] <- round(h4$coefficients, digits = 2)
+#add se 
+table3_numbers[1:8,3] <- round(summary_tableh4$coefficients[1:8,2], digits = 2)
+#add t 
+table3_numbers[1:8,4] <- round(summary_tableh4$coefficients[1:8,3], digits = 2)
+#add p values
+table3_numbers[1:8,5] <- format.pval(summary_tableh4$coefficients[1:8,4], digits = 2, eps = 0.001, nsmall = 3)
+
+
+rownames(table3_numbers) <- c("Intercept", "Emotions: Positive", "Emotions: Negative Dominant", "Emotions: Negative Submissive", "Attitudes towards the war", "Group-based moral shame", "Group-based image shame", "Group-based guilt")
+
+colnames(table3_numbers) <- c("$\\beta$", "b", "SE", "t-value","p")
+
+
+```
+
+
+Behavioral intentions and action probability correlated at r = `r round(correlation1$estimate, digits = 2)`, p `r format.pval(correlation1$p.value, digits = 2, eps = 0.001, nsmall = 3)`, so we scaled and combined the two measures into a single indicator of future anti-war action. We ran a linear regression predicting future anti-war behavior from attitude towards the war, negative and positive emotions, and shame and guilt. Table 3 presents the results. Overall, the model explained 47% of variance in future behavior. Anti-war behavioral intentions were best predicted by moral shame ($\beta$ = `r round(h42$coefficients[6], digits = 2)`, p `r format.pval(summary_tableh4$coefficients[6,4], digits = 2, eps = 0.001, nsmall = 3)`), followed by negative dominant emotions ($\beta$ = `r round(h42$coefficients[3], digits = 2)`, p `r format.pval(summary_tableh4$coefficients[3,4], digits = 2, eps = 0.001, nsmall = 3)`), and only then attitude ($\beta$ = `r round(h42$coefficients[5], digits = 2)`, p `r format.pval(summary_tableh4$coefficients[5,4], digits = 2, eps = 0.001, nsmall = 3)`). Negative submissive emotions had a small negative effect on intentions to act ($\beta$ = `r round(h42$coefficients[4], digits = 2)`, p = `r format.pval(summary_tableh4$coefficients[4,4], digits = 2, eps = 0.001, nsmall = 3)`). 
+
+## Table 3 {.unnumbered}
+
+Predicting future behavior from emotions and attitudes
+
+```{r table3-print}
+
+knitr::kable(table3_numbers, booktabs = TRUE, escape = FALSE) %>% 
+  kableExtra::kable_styling(font_size = 8, latex_options = "HOLD_position")
+
+
+```
+
+The results of the zero-inflated negative binomial model (Table S4, SM) suggested that different predictors account for the presence vs. absence of intentions to act versus the strength of these intentions. Only moral shame (b = -.36, p = .036) and attitude (b = .38, p = .001) predicted the probability of no action, whereas only negative emotions predicted the strength of these intentions. Negative dominant emotions predicted stronger intentions to act (b = .24, p < .001), whereas negative submissive emotions predicted weaker intentions to act (b = -.14, p = .013).  
+
+\allsectionsfont{\centering}
+# Discussion {.unnumbered}
+
+We set out to investigate the role of group-based guilt and shame in anti-government political action in Russia, an authoritarian country at war. This study aimed to address three research questions: (1) Are feelings of group-based guilt and shame conditional upon political beliefs that people can influence the actions of their governments? (2) Are guilt and shame predictive of anti-war action in an authoritarian state? (3) Are guilt and shame better predictors of anti-war action than other emotions or attitudes? Below we will summarize the findings addressing each of these three questions in order.
+
+Although we found that political responsibility predicted group-based guilt and the belief that politicians are evil predicted both guilt and shame, these effects were not as strong or as reliable as that of democratic values. Only democratic values predicted both occurrence and strength of all three emotions: guilt, moral shame, and image shame. If we accept the premise that the function of group-based guilt and shame is to change and regulate group behavior, then this finding suggests that democratic values are more important for collective action than political efficacy. This is consistent with @Ayanian2021 that show that political efficacy is not a primary driver of collective action in repressive contexts. People in such contexts might engage in political action even if they do not believe that their actions will lead to political change. Broader democratic values, on the other hand, seem to be a necessary precondition for people to believe in the potential of building a movement that would stand a chance against the regime (participative efficacy and identity consolidation efficacy in @Ayanian2021).
+
+Moral shame consistently predicted anti-war action, both past and future, whereas guilt and image shame did not. Although we expected this null result for image shame based on previous findings that reputational concerns are more likely to motivate avoidance behaviors [@Rees2013; @Grigoryan2017], we did not expect guilt to have no effect. Theoretically, guilt, unlike shame, should directly motivate restorative action [@Lickel2011; @Tangney2007]. Perhaps not believing that your actions would lead to some political change is more detrimental to the motivation of those who experience guilt than those who experience moral shame.  To stop feeling guilt, the behavior that led to the emergence of that feeling needs to be corrected. When this possibility is blocked, guilt might become dysfunctional. For example, a meta-analysis of guilt, shame, and depressive symptoms [@Kim2011] showed that the association between guilt and depression is particularly strong when guilt involves exaggerated responsibility over uncontrollable events. Moral obligation, on the other hand, can motivate collective action even when people understand that this action is unlikely to be successful [@Ayanian2021].
+
+Consistent with earlier evidence from collective action literature [@Zomeren2008], we find that emotions (moral shame and negative dominant emotions) have a stronger effect on collective action tendencies than attitude towards the war. The results of zero-inflated negative binomial models shed further light on predictors of the decision to take part in collective action vs. the strength of these intentions. The dual pathway model of collective action suggests that collective action can be motivated via an emotional (anger) or a cognitive (efficacy) route [@Zomeren2004]. Our findings suggest that this might be a sequential process: the decision to take any political action was predicted by attitude towards the war and moral shame, which has a cognitive element of moral appraisal of the war, whereas the strength of intention to take action was best predicted by negative emotions – negative dominant emotions (e.g., anger) predicted a stronger intention to take action, whereas negative submissive emotions (e.g., fear) predicted a weaker intention to take action.
+
+This study contributes to the literature on collective action by investigating the role of group-based guilt and shame in anti-war action in an authoritarian country at war. We show that democratic values are fundamental to feeling guilt and shame, and that only moral shame translates into political action. It further contributes to the understanding of collective action more broadly, by providing first evidence that suggests that cognitive and emotional factors might have differential impact on the decision to participate in collective action vs. the strength of these intentions. Whereas moral reasoning seems more important for the decision to participate, emotions are more important for the strength of these intentions. 
+
+This study is, of course, not without its limitations. The major limitation of the current dataset is its cross-sectional nature, which does not allow us to make any causal conclusions. However, given the difficulty of accessing such samples, we believe that survey data, particularly from large samples that are representative of the country’s population by key demographic characteristics, is highly valuable. The second major concern is social desirability. As mentioned in the introduction, anti-war sentiments are essentially criminalized in Russia, so we can be almost certain that some participants did not feel comfortable disclosing their true beliefs about the “special military operation” in the questionnaire, even though the study was completely anonymous. Despite the high likelihood of social desirability bias, we believe most participants were honest in their responses. The overall distribution of the scores on support for the “special military operation” (46.7% support, 27.9% oppose, and 25.4% are not sure) is what we would expect based on public opinion surveys [@Levada-Center2022], accounting for the online nature of our sample, which is likely to be more anti-government than the samples of telephone surveys. 
+
+This study highlights some gaps in the literature that still need to be addressed. First, more evidence from authoritarian regimes would help contextualize existing knowledge on collective action and understand its implicit assumptions and limitations. Second, research on group-based guilt and shame is largely historic in nature and more studies from contexts with ongoing intergroup conflicts could help expand this literature and better understand the motivational power of these emotions for intergroup conflict and peace. Third, more work is needed in developing interventions that can increase a sense of responsibility for ingroup’s wrongdoings in contexts where political participation is restricted and such responsibility is denied. All these developments would require a broader participation of scholars from the majority world that can fill in these gaps by providing the necessary conceptualizations and empirical evidence from the many non-democratic countries of the world.
+
+# References {.unnumbered}
+
+<div id="refs"></div>
+
+# Supplementary materials {.unnumbered}
+
+\beginsupplement
+
