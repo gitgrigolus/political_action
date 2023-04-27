@@ -839,7 +839,7 @@ pcyn_im~~pal+pr
 pal~~pr
 '
 fit <- sem(h1, data=d3, estimator="MLR")
-summary(fit,fit.measures=TRUE, standardized=TRUE)
+S1data <- summary(fit,fit.measures=TRUE, standardized=TRUE)
 #only democratic values and belief that politicians are bad predict higher guilt and shame 
 
 
@@ -1142,8 +1142,27 @@ This study highlights some gaps in the literature that still need to be addresse
 
 ```{r TableS1}
 
-knitr::kable(table3_numbers, caption='Path model predicting group-based guilt and shame from political beliefs.', booktabs = TRUE, escape = FALSE) %>% 
-  kableExtra::kable_styling(font_size = 8, latex_options = "HOLD_position")
+tableS1_numbers <- matrix(0,nrow=18,ncol=5)
+tableS1_numbers[c(2:6,8:12,14:18),1] <- round(S1data$pe$est[1:15],digits=2)
+tableS1_numbers[c(2:6,8:12,14:18),2] <- round(S1data$pe$se[1:15],digits=2)
+tableS1_numbers[c(2:6,8:12,14:18),3] <- round(S1data$pe$z[1:15],digits=2)
+tableS1_numbers[c(2:6,8:12,14:18),4] <- round(S1data$pe$pvalue[1:15],digits=3)
+tableS1_numbers[c(2:6,8:12,14:18),5] <- round(S1data$pe$std.all[1:15],digits=2)
+
+tableS1_numbers[which(tableS1_numbers==0)] <- '<0.001'
+tableS1_numbers[c(1,7,13),] <- ' '
+
+rownames(tableS1_numbers) <- c("Guilt", "Democratic values", "Political cynicism (politicians)", "Political cynicism (politics)","Political alienation","Political responsibility","Image shame","Democratic values", "Political cynicism (politicians)", "Political cynicism (politics)","Political alienation","Political responsibility","Moral shame","Democratic values", "Political cynicism (politicians)", "Political cynicism (politics)","Political alienation","Political responsibility")
+
+colnames(tableS1_numbers) <- c("b", "SE", "Z", "p", "$\\beta$")
+
+
+knitr::kable(tableS1_numbers, caption='Path model predicting group-based guilt and shame from political beliefs.', align='rrrrr', booktabs = TRUE, escape = FALSE) %>% 
+  kableExtra::kable_styling(font_size = 8, latex_options = "HOLD_position") %>%
+  row_spec(0,italic=T) %>%
+  row_spec(1,bold=T,italic=T) %>%
+  row_spec(7,bold=T,italic=T) %>%
+  row_spec(13,bold=T,italic=T)
 
 ```
 
