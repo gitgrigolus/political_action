@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.22)  27 APR 2023 23:21
+This is LuaHBTeX, Version 1.16.0 (TeX Live 2023)  (format=lualatex 2023.4.22)  28 APR 2023 06:04
  restricted system commands enabled.
 **manuscript.tex
 (./manuscript.tex
@@ -530,12 +530,12 @@ braces):
 >  {russian/Localnumeral}  =>  {Russiannumerals}
 >  {russian/DefineCommandsCmd}  =>  {xpg_define_language_commands:e}.
 Module polyglossia Info: Language data for russian
-(polyglossia)            patterns	hyph-ru.pat.txt
+(polyglossia)            righthyphenmin	2
 (polyglossia)            loader	loadhyph-ru.tex
-(polyglossia)            lefthyphenmin	2
-(polyglossia)            synonyms	
 (polyglossia)            hyphenation	hyph-ru.hyp.txt
-(polyglossia)            righthyphenmin	2 on input line 22
+(polyglossia)            patterns	hyph-ru.pat.txt
+(polyglossia)            lefthyphenmin	2
+(polyglossia)            synonyms	 on input line 22
 Module polyglossia Info: Language russian was not yet loaded; created with id 2 on input line 22
 Package polyglossia Info: Option: Russian, numerals=arabic.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/polyglossia/babelsh.def
@@ -1344,10 +1344,10 @@ Here is how much of LuaTeX's memory you used:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 14 attribute, 68 glue_spec, 14 attribute_list, 1 write, 1 user_defined, 6 pdf_action nodes
    avail lists: 1:1,2:2050,3:275,4:32,5:644,6:84,7:13610,8:64,9:1486,10:18,11:1047
  41135 multiletter control sequences out of 65536+600000
- 90 fonts using 44797719 bytes
+ 90 fonts using 44797947 bytes
  86i,12n,115p,1576b,379s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/db900/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman Bold Italic.ttf></System/Library/Fonts/Supplemental/Times New Roman Italic.ttf></System/Library/Fonts/Supplemental/Times New Roman Bold.ttf></Users/db900/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman.ttf>
-Output written on manuscript.pdf (11 pages, 186917 bytes).
+Output written on manuscript.pdf (11 pages, 186854 bytes).
 
 PDF statistics: 283 PDF objects out of 1000 (max. 8388607)
  249 compressed objects within 3 object streams

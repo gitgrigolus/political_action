@@ -949,7 +949,7 @@ h5counts <- 100*table(d3$fb_oppos_count)%>% prop.table()
 h5 <- zeroinfl(fb_oppos_count ~ posem+neg_dom+neg_sub+smop_att+
                  +mshamef+ishamef+cguiltf,d3,dist="negbin")
 summary(h5)
-
+S4 <- summary(h5)
 
 ```
 
@@ -1113,7 +1113,7 @@ knitr::kable(table3_numbers, caption='Predicting future behavior from emotions a
 
 ```
 
-The results of the zero-inflated negative binomial model (Table \@ref(tab:TableS4), SM) suggested that different predictors account for the presence vs. absence of intentions to act versus the strength of these intentions. Only moral shame (*b* = -.36, *p* = .036) and attitude (*b* = .38, *p* = .001) predicted the probability of no action, whereas only negative emotions predicted the strength of these intentions. Negative dominant emotions predicted stronger intentions to act (*b* = .24, *p* < .001), whereas negative submissive emotions predicted weaker intentions to act (*b* = -.14, *p* = .013).  
+The results of the zero-inflated negative binomial model (Table \@ref(tab:TableS4), SM) suggested that different predictors account for the presence vs. absence of intentions to act versus the strength of these intentions. Only moral shame (*b* = `r round(S4$coefficients$zero[6,1],digits=2)`, *p* = `r round(S4$coefficients$zero[6,4],digits=3)`) and attitude (*b* = `r round(S4$coefficients$zero[5,1],digits=2)`, *p* = `r round(S4$coefficients$zero[5,4],digits=3)`) predicted the probability of no action, whereas only negative emotions predicted the strength of these intentions. Negative dominant emotions predicted stronger intentions to act (*b* = `r round(S4$coefficients$count[3,1],digits=2)`, *p* = <0.001), whereas negative submissive emotions predicted weaker intentions to act (*b* = `r round(S4$coefficients$count[4,1],digits=2)`, *p* = `r round(S4$coefficients$count[4,4],digits=3)`).  
 
 \allsectionsfont{\centering}
 # Discussion {.unnumbered}
@@ -1252,8 +1252,6 @@ knitr::kable(tableS3_numbers, caption='Predicting anti-war action from group-bas
 To create a combined score for future behavior that represents count data, we summed up responses to all four questions: three behavioral intention items and one action probability item. This resulted in a variable with scores ranging from 0 to 22, zeroes constituting `r round(h5counts[1])`% of data. Table \@ref(tab:TableS4) presents the results of the zero-inflated negative binomial regression model. Only moral shame and attitude predicted non-zero action in the future, whereas the higher likelihood of action was predicted only by negative emotions.
 
 ```{r TableS4}
-
-S4 <- summary(h5)
 
 tableS4_numbers <- matrix(0,nrow=18,ncol=4)
 tableS4_numbers[1,] <- ' '
