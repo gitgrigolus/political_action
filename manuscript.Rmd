@@ -14,7 +14,8 @@ output:
 always_allow_html: yes
 test: "`r OS <- Sys.info()['sysname']`
 `r if (OS=='Linux'){fontname <- 'Nimbus Roman'}`
-`r if (OS=='Darwin'){fontname <- 'Times New Roman'}`"
+`r if (OS=='Darwin'){fontname <- 'Times New Roman'}`
+`r if (OS=='Windows'){fontname <- 'Times New Roman'}`"
 header-includes:
 - \usepackage{indentfirst}
 - \usepackage{sectsty}
