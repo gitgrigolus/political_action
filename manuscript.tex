@@ -81,8 +81,8 @@
 \usepackage{polyglossia}
 \setdefaultlanguage{english}
 \setotherlanguages{russian}
-\setmainfont{Times New Roman}
-\newfontfamily{\cyrillicfonttt}{Times New Roman}
+\setmainfont{Nimbus Roman}
+\newfontfamily{\cyrillicfonttt}{Nimbus Roman}
 \usepackage{float}
 \usepackage{float} \floatplacement{figure}{H}
 \newcommand{\beginsupplement}{\setcounter{table}{0}
@@ -282,7 +282,7 @@ In a series of linear regressions, we tested whether political beliefs predict e
 \toprule
 \multicolumn{1}{c}{} & \multicolumn{4}{c}{Moral Shame} & \multicolumn{4}{c}{Image Shame} & \multicolumn{4}{c}{Guilt} \\
 \cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9} \cmidrule(l{3pt}r{3pt}){10-13}
-  & $\beta$ & $b$ & $SE$ & $p$ & $\beta$ & $b$ & $SE$ & $p$ & $\beta$ & $b$ & $SE$ & $p$\\
+\em{ } & \em{$\beta$} & \em{b} & \em{SE} & \em{p} & \em{$\beta$} & \em{b} & \em{SE} & \em{p} & \em{$\beta$} & \em{b} & \em{SE} & \em{p}\\
 \midrule
 Intercept & 0 & -2.89 & 0.32 & <.001 & 0 & -2.85 & 0.34 & <.001 & 0 & -2.93 & 0.34 & <.001\\
 Democratic Values & 0.41 & 0.64 & 0.05 & <.001 & 0.4 & 0.64 & 0.05 & <.001 & 0.41 & 0.65 & 0.05 & <.001\\
@@ -312,7 +312,7 @@ In a series of linear regressions, we tested whether guilt, image shame, and mor
 \toprule
 \multicolumn{1}{c}{} & \multicolumn{4}{c}{Past Behaviour} & \multicolumn{4}{c}{Behavioural Intention} & \multicolumn{4}{c}{Action Probability} \\
 \cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-9} \cmidrule(l{3pt}r{3pt}){10-13}
-  & $\beta$ & b & SE & p & $\beta$ & b & SE & p & $\beta$ & b & SE & p\\
+\em{ } & \em{$\beta$} & \em{b} & \em{SE} & \em{p} & \em{$\beta$} & \em{b} & \em{SE} & \em{p} & \em{$\beta$} & \em{b} & \em{SE} & \em{p}\\
 \midrule
 Intercept & 0 & 0.1 & 0.04 & .009 & 0 & 1.09 & 0.03 & <.001 & 0 & 1.21 & 0.07 & <.001\\
 Guilt & 0.02 & 0.01 & 0.04 & .756 & 0 & 0 & 0.03 & .942 & 0.05 & 0.06 & 0.06 & .326\\
@@ -338,7 +338,7 @@ Behavioral intentions and action probability correlated at \emph{r} = 0.86, \emp
 \fontsize{8}{10}\selectfont
 \begin{tabular}[t]{lrrrrr}
 \toprule
-  & $\beta$ & b & SE & t-value & p\\
+\em{ } & \em{$\beta$} & \em{b} & \em{SE} & \em{t-value} & \em{p}\\
 \midrule
 Intercept & 0 & -0.1 & 0.12 & -0.82 & .410\\
 Emotions: Positive & -0.032 & -0.03 & 0.03 & -0.96 & .337\\
@@ -540,9 +540,9 @@ The results of zero-inflated negative binomial regressions are presented in Tabl
 Intercept & -0.76 & 0.31 & .014 & -0.44 & 0.29 & .129 & -0.85 & 0.28 & .002\\
 Democratic values & 0.23 & 0.05 & <.001 & 0.17 & 0.05 & <.001 & 0.25 & 0.05 & <.001\\
 Political cynicism (politicians) & 0.12 & 0.05 & .006 & 0.12 & 0.04 & .005 & 0.07 & 0.04 & .065\\
-Political cynicism (politics) & -0.04 & 0.03 & .172 & -0.03 & 0.03 & .253 & -0.02 & 0.03 & .548\\
+Political cynicism (politics) & -0.04 & 0.03 & .172 & -0.03 & 0.03 & .253 & -0.02 & 0.03 & .549\\
 \addlinespace
-Political alienation & -0.03 & 0.03 & .255 & 0 & 0.03 & .971 & 0 & 0.03 & .992\\
+Political alienation & -0.03 & 0.03 & .255 & 0 & 0.03 & .971 & 0 & 0.03 & .993\\
 Political responsibility & 0.01 & 0.03 & .691 & 0 & 0.03 & .948 & 0.03 & 0.03 & .308\\
 \midrule
 \em{\textbf{Zero-inflation model}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}}\\
