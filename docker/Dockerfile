@@ -1,4 +1,4 @@
-FROM rocker/rstudio:4.2.2
+FROM rocker/verse:4.2.2
 
 RUN apt-get update -qq
 RUN apt-get -y install cmake
@@ -11,22 +11,14 @@ RUN apt-get -y install git
 
 RUN install2.r –error \
 --deps TRUE \
-readr \ 
 psych \
 GPArotation \
 lavaan \
 pscl \
-ggplot2 \ 
 sjPlot \
 car \
-dplyr \ 
-MASS \
-readxl \  
+MASS \ 
 writexl \
 kableExtra \
 rstatix \ 
-markdown \
-bookdown \
-osfr \
-tinytex
-
+osfr
