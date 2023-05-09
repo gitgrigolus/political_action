@@ -43,7 +43,7 @@ csl: elife.csl
 
 \vspace{10mm}
 \begin{center}
-Lusine Grigoryan$^{1}$, Vladimir Ponizovskiy$^{2}$, Marie Isabelle Wießflog$^{2}$, Evgeny Osin$^{3}$,$^{4}$, and Brian Lickel$^{5}$
+Lusine Grigoryan$^{1}$, Vladimir Ponizovskiy$^{2}$, Marie Isabelle Wießflog$^{2}$, Evgeny Osin$^{3,4}$, and Brian Lickel$^{5}$
 \vspace{30mm}
 
 $^{1}$ Department of Psychology, University of York
