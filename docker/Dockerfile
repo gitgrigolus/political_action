@@ -1,4 +1,4 @@
-FROM rocker/verse:4.4.0
+FROM rocker/verse:4.3.3
 
 RUN apt-get update -qq
 RUN apt-get -y install cmake
