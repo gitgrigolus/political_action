@@ -1,6 +1,6 @@
 These materials are a computationally reproducible version of the paper:
 
-Grigoryan, Ponizovskiy, Wießflog, Osin & Lickel (2024). Guilt, shame, and anti-war action in an authoritarian country at war. Political Psychology, http://doi.org/11.1111/pops.12985
+Grigoryan, Ponizovskiy, Wießflog, Osin & Lickel (2024). Guilt, shame, and anti-war action in an authoritarian country at war. Political Psychology, http://doi.org/10.1111/pops.12985
 
 The file manuscript.Rmd is an R markdown file that will perform all analyses and table creation, and produce a pdf version of the manuscript.
 
