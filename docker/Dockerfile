@@ -21,4 +21,5 @@ MASS \
 writexl \
 kableExtra \
 rstatix \ 
-osfr
+osfr \
+tinytex
