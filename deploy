@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mkdir build
-cp *.pdf build/
-
-cd ..
