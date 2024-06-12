@@ -16,9 +16,13 @@ GPArotation \
 lavaan \
 pscl \
 sjPlot \
+apaTables \
 car \
 MASS \ 
 writexl \
+readxl \
+GGally \
+ggthemes \
 kableExtra \
 rstatix \ 
 osfr \
