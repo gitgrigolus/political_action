@@ -60,6 +60,12 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -623,40 +629,69 @@ Weiss-Klayman N, Hameiri B, Halperin E. 2020. Group-based guilt and shame in the
 
 \beginsupplement
 
-\begin{table}[H]
-\centering
-\caption{\label{tab:TableS1}Path model predicting group-based guilt and shame from political beliefs.}
-\centering
-\fontsize{8}{10}\selectfont
-\begin{tabular}[t]{lrrrrr}
-\toprule
-\em{ } & \em{b} & \em{SE} & \em{Z} & \em{p} & \em{$\beta$}\\
-\midrule
-\em{\textbf{Guilt}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}}\\
-Democratic values & 0.65 & 0.05 & 12.28 & <.001 & 0.41\\
-Political cynicism (politicians) & 0.1 & 0.05 & 2.15 & .032 & 0.09\\
-Political cynicism (politics) & -0.03 & 0.05 & -0.69 & .492 & -0.03\\
-Political alienation & 0.02 & 0.04 & 0.44 & .663 & 0.01\\
-\addlinespace
-Political responsibility & 0.1 & 0.05 & 2.19 & .028 & 0.07\\
-\em{\textbf{Image shame}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}}\\
-Democratic values & 0.64 & 0.05 & 12.13 & <.001 & 0.4\\
-Political cynicism (politicians) & 0.18 & 0.05 & 3.85 & <.001 & 0.16\\
-Political cynicism (politics) & -0.03 & 0.05 & -0.69 & .489 & -0.03\\
-\addlinespace
-Political alienation & -0.04 & 0.04 & -0.92 & .359 & -0.03\\
-Political responsibility & 0.04 & 0.04 & 0.94 & .345 & 0.03\\
-\em{\textbf{Moral shame}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}} & \em{\textbf{}}\\
-Democratic values & 0.64 & 0.05 & 12.61 & <.001 & 0.41\\
-Political cynicism (politicians) & 0.2 & 0.04 & 4.52 & <.001 & 0.18\\
-\addlinespace
-Political cynicism (politics) & -0.05 & 0.04 & -1.21 & .228 & -0.05\\
-Political alienation & -0.06 & 0.04 & -1.53 & .125 & -0.05\\
-Political responsibility & 0.05 & 0.04 & 1.3 & .195 & 0.04\\
-\bottomrule
-\end{tabular}
-\end{table}
+\textbf{Descriptive statistics}
 
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:TableS1}Means, standard deviations, and correlations with confidence intervals
+}
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{llllllllllllllllll}
+\toprule
+  & Variable & M & SD & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14\\
+\midrule
+ & 1. Past behavior & 0.40 & 1.07 &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 2. Behavioral intentions & 1.53 & 1.00 & .56** &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[.51, .60] &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 3. Action probability & 2.09 & 2.17 & .61** & .86** &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[.56, .64] & {}[.85, .88] &  &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 4. Moral shame & 1.09 & 1.67 & .42** & .65** & .61** &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[.37, .47] & {}[.61, .69] & {}[.57, .65] &  &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 5. Image shame & 1.13 & 1.70 & .39** & .62** & .58** & .94** &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[.34, .44] & {}[.58, .66] & {}[.53, .62] & {}[.93, .95] &  &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 6. Guilt & 1.23 & 1.69 & .37** & .55** & .53** & .85** & .81** &  &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[.31, .42] & {}[.51, .60] & {}[.49, .58] & {}[.83, .87] & {}[.79, .83] &  &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 7. Positive emotions & 2.19 & 1.04 & -.21** & -.37** & -.35** & -.42** & -.40** & -.36** &  &  &  &  &  &  &  & \\
+ &  &  &  & {}[-.27, -.15] & {}[-.43, -.32] & {}[-.41, -.29] & {}[-.47, -.37] & {}[-.45, -.34] & {}[-.42, -.31] &  &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 8. Negative dominant emotions & 2.34 & 1.25 & .38** & .59** & .57** & .74** & .71** & .64** & -.34** &  &  &  &  &  &  & \\
+ &  &  &  & {}[.33, .44] & {}[.55, .63] & {}[.52, .61] & {}[.71, .77] & {}[.68, .74] & {}[.60, .67] & {}[-.39, -.28] &  &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 9. Negative submissive emotions & 2.88 & 1.11 & .24** & .41** & .38** & .58** & .57** & .58** & -.35** & .64** &  &  &  &  &  & \\
+ &  &  &  & {}[.18, .30] & {}[.35, .46] & {}[.33, .43] & {}[.53, .62] & {}[.52, .61] & {}[.53, .62] & {}[-.41, -.30] & {}[.60, .67] &  &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 10. Attitude & 2.88 & 1.29 & -.33** & -.53** & -.51** & -.62** & -.60** & -.55** & .73** & -.58** & -.52** &  &  &  &  & \\
+ &  &  &  & {}[-.39, -.27] & {}[-.57, -.48] & {}[-.56, -.46] & {}[-.66, -.58] & {}[-.64, -.56] & {}[-.59, -.50] & {}[.70, .76] & {}[-.62, -.54] & {}[-.57, -.48] &  &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 11. Democratic values & 4.99 & 1.07 & .30** & .45** & .45** & .49** & .47** & .46** & -.46** & .49** & .42** & -.58** &  &  &  & \\
+ &  &  &  & {}[.25, .36] & {}[.40, .50] & {}[.40, .50] & {}[.44, .54] & {}[.42, .52] & {}[.41, .51] & {}[-.50, -.40] & {}[.44, .54] & {}[.37, .47] & {}[-.62, -.53] &  &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 12. Political cynicism (politicians) & 5.20 & 1.50 & .13** & .27** & .27** & .32** & .31** & .27** & -.36** & .38** & .29** & -.42** & .47** &  &  & \\
+ &  &  &  & {}[.07, .19] & {}[.21, .32] & {}[.21, .33] & {}[.26, .38] & {}[.25, .37] & {}[.21, .33] & {}[-.41, -.30] & {}[.33, .43] & {}[.23, .35] & {}[-.47, -.36] & {}[.42, .52] &  &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 13. Political cynicism (politics) & 4.10 & 1.52 & -.02 & .04 & .03 & .10** & .11** & .09** & -.17** & .20** & .15** & -.15** & .15** & .64** &  & \\
+ &  &  &  & {}[-.09, .04] & {}[-.03, .10] & {}[-.03, .09] & {}[.04, .16] & {}[.05, .17] & {}[.02, .15] & {}[-.23, -.10] & {}[.14, .26] & {}[.09, .21] & {}[-.21, -.09] & {}[.08, .21] & {}[.60, .67] &  & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 14. Political alienation & 4.62 & 1.38 & -.11** & -.09** & -.09** & .00 & .03 & .04 & -.13** & .08** & .22** & -.09** & .02 & .41** & .43** & \\
+ &  &  &  & {}[-.17, -.05] & {}[-.15, -.03] & {}[-.15, -.03] & {}[-.06, .07] & {}[-.04, .09] & {}[-.03, .10] & {}[-.19, -.06] & {}[.02, .15] & {}[.16, .28] & {}[-.15, -.02] & {}[-.04, .08] & {}[.35, .46] & {}[.38, .48] & \\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+ & 15. Political responsibility & 4.32 & 1.15 & .15** & .14** & .15** & .12** & .10** & .13** & .21** & .06 & .03 & .13** & .16** & .01 & -.11** & -.20**\\
+ &  &  &  & {}[.09, .21] & {}[.08, .20] & {}[.09, .22] & {}[.06, .18] & {}[.04, .16] & {}[.07, .19] & {}[.14, .27] & {}[-.01, .12] & {}[-.03, .10] & {}[.07, .19] & {}[.10, .22] & {}[-.05, .07] & {}[-.17, -.04] & {}[-.26, -.14]\\
+ &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & \\
+\bottomrule
+\multicolumn{18}{l}{\textsuperscript{} Note. * p<.05. ** p<.01.}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\textbf{Zero-inflated negative binomial regressions}
 The results of zero-inflated negative binomial regressions are presented in Table \ref{tab:TableS2}. This model allows us to test both what predicts the likelihood of experiencing these emotions (zero vs.~non-zero: the zero-inflation model) and what predicts the strength of these emotions for those who experience them (the count model). The results for strength of the emotions are identical to the results from the linear regression, but only democratic values predict the likelihood of experiencing these emotions in the first place.
 
 \begin{table}[H]
@@ -762,5 +797,73 @@ Group-based guilt & -0.11 & 0.09 & -1.2 & .231\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textbf{Results for additional hypotheses from the preregistration protocol}
+Preregistered hypothesis 4: ``Moral shame and guilt mediate the link between political beliefs and behavioral intentions. We will test those political beliefs (out of four: political responsibility, democratic values, political cynicism and alienation) that significantly predict moral shame and guilt.''
+We also limited the analysis to moral shame, as previous results suggested that only moral shame is predictive of behavioural intentions when all three group-based emotions (guilt, moral shame, image shame) are entered into the model. Table \ref{tab:TableS5} shows the results of the mediation model. All variables have been scaled to make the effect sizes comparable.
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:TableS5}Mediation model predicting anti-war behavioral intention from political beliefs and moral shame. .}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{llrrr}
+\toprule
+\em{ } & \em{b} & \em{SE} & \em{z-value} & \em{p-value}\\
+\midrule
+\em{Direct effects on behavioral intention} & \em{} & \em{} & \em{} & \em{}\\
+\hspace{1em}Moral shame & 0.564 & 0.03 & 20.37 & <.001\\
+\hspace{1em}Democratic values & 0.175 & 0.03 & 5.88 & <.001\\
+\hspace{1em}Political cynicism (politicians) & 0.003 & 0.03 & 0.12 & .906\\
+\em{Direct effets on moral shame} & \em{} & \em{} & \em{} & \em{}\\
+\hspace{1em}Democratic values & 0.438 & 0.03 & 13.88 & <.001\\
+\hspace{1em}Political cynicism (politicians) & 0.116 & 0.03 & 3.68 & <.001\\
+\em{Indirect effects on behavioral intention} & \em{} & \em{} & \em{} & \em{}\\
+\hspace{1em}Democratic values via moral shame & 0.247 & 0.02 & 11.47 & <.001\\
+\hspace{1em}Political cynicism via moral shame & 0.065 & 0.02 & 3.62 & <.001\\
+\hspace{1em}Total effect of political beliefs & 0.49 & 0.03 & 14.65 & <.001\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The effect of political cynicism on behavioral intentions was fully explained by moral shame (non-significant main effect after inclusion of moral shame). Both democratic values and political cynicism had significant indirect effects on behavioral intentions via moral shame, with the indirect effect for democratic values being almost four times stronger than that of political cynicism. The effect of moral shame on behavioral intention was stronger than the combined (direct and indirect) effect of political beliefs. Please note that this data is cross-sectional, and these results should be interpreted with caution with regards to causality.
+
+\ul{Preregistered hypothesis 6}: ``6a. Self-efficacy and political responsibility positively, and political alienation and political cynicism negatively moderate the relationship between negative emotions and intention to act against the war.
+
+6b. Self-efficacy and political responsibility positively, and political alienation and political cynicism negatively moderate the relationship between attitude and intention to act against the war.
+
+RQ3: Which of the four moderators best explains the variation in the emotions-behavior and attitude-behavior links?''
+
+We tested negative dominant and submissive emotions in one set of models, and attitude in another set of models. Attitude was recoded so that higher scores indicate more negative attitudes towards the war, to ease the interpretation of interaction effect. Each moderator was tested in an independent model, producing ten models overall. The DV was always future behavior (combination of behavioral intention and action probability, as described in the manuscript). Table \ref{tab:TableS6} summarizes the interaction effects from these ten models.
+
+\begin{table}[H]
+\centering
+\caption{\label{tab:TableS6}Interactions of negative emotions and attitude with efficacy in predicting future behavior.}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{lrrrr}
+\toprule
+\em{ } & \em{b} & \em{SE} & \em{z-value} & \em{p-value}\\
+\midrule
+Negative dominant * self-efficacy & 0.02 & 0.03 & 0.48 & .634\\
+Negative dominant * political responsibility & 0.11 & 0.03 & 3.6 & <.001\\
+Negative dominant * political alienation & -0.11 & 0.03 & -3.67 & <.001\\
+Negative dominant * political cynicism (politicians) & 0.17 & 0.04 & 4.55 & <.001\\
+Negative dominant * political cynicism (politics) & -0.11 & 0.03 & -3.42 & <.001\\
+Negative submissive * self-efficacy & 0.01 & 0.03 & 0.2 & .839\\
+Negative submissive * political responsibility & 0.05 & 0.03 & 1.68 & .094\\
+Negative submissive * political alienation & -0.04 & 0.03 & -1.49 & .135\\
+Negative submissive * political cynicism (politicians) & -0.01 & 0.03 & -0.38 & .706\\
+Negative submissive * political cynicism (politics) & 0.04 & 0.03 & 1.24 & .214\\
+Attitude * self-efficiacy & 0.01 & 0.03 & 0.28 & .777\\
+Attitude * political responsibility & 0.14 & 0.02 & 5.67 & <.001\\
+Attitude * political alienation & -0.12 & 0.03 & -4.79 & <.001\\
+Attitude * political cynicism (politicians) & 0.19 & 0.03 & 6.62 & <.001\\
+Attitude * political cynicism (politics) & -0.05 & 0.03 & -1.75 & .080\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Self-efficacy did not moderate the link between negative emotions or attitude and behavior, but political efficacy did. The effect of negative submissive emotions on behavior was not moderated by efficacy beliefs, but the effects of negative dominant emotions and attitude were. As expected, the more people believed that they have political responsibility and the less they believed their political actions can't change anything (political alienation), the more their negative emotions and attitude translated into behavioral intentions. Interestingly, the moderating effect of political cynicism differed depending on whether people were cynical about politicians specifically or the nature of politics more generally. If people thought politicians are bad, their negative emotion and attitudes translated better into behavioral intentions. However, if they believed politics as a whole is an immoral enterprise, their thoughts and feelings did not translate into behavior that well. The belief that politicians are bad was the strongest moderator.
 
 \end{document}

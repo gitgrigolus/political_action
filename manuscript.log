@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.6.12)  12 JUN 2024 09:34
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.6.12)  12 JUN 2024 12:47
  restricted system commands enabled.
 **manuscript.tex
 (./manuscript.tex
@@ -359,6 +359,24 @@ Package graphics Info: Driver file: luatex.def on input line 106.
 )
 \Gin@req@height=\dimen181
 \Gin@req@width=\dimen182
+) (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/luacolor/luacolor.sty
+Package: luacolor 2023-08-18 v1.18 Color support via LuaTeX's attributes (HO)
+Inserting `luacolor.process' in `pre_shipout_filter'.
+\LuaCol@Attribute=\attribute4
+) (/Users/db900/Library/TinyTeX/texmf-dist/tex/lualatex/lua-ul/lua-ul.sty
+Package: lua-ul 2024-02-26 v0.2.1 Underlining and related functionality for LuaTeX
+Lua function luaul.restore_everyhbox = 29
+Lua function luaul.new_underline_type = 30
+Lua function luaul.set_underline_func = 31
+Lua function luaul.reset_underline_func = 32
+Module luatexbase Info: Uninstalling kernel luatexbase code on input line 36
+Inserting `add underlines to list' in `pre_append_to_vlist_filter'.
+Inserting `add underlines to list' in `hpack_filter'.
+Inserting `add underlines to list' in `vpack_filter'.
+Lua function sw@slant = 33
+\l__luaul_top_dim=\dimen183
+\l__luaul_bottom_dim=\dimen184
+\l__luaul_height_dim=\dimen185
 )
 \cslhangindent=\skip64
 \csllabelwidth=\skip65
@@ -409,12 +427,12 @@ File: gloss-russian.ldf polyglossia: module for Russian
 Package: xpg-cyrillicnumbers 2019/11/15 v0.2 Formatting of Cyrillic alphabetic numbers
 )
 Module polyglossia Info: Language data for russian
+(polyglossia)            lefthyphenmin	2
 (polyglossia)            hyphenation	hyph-ru.hyp.txt
 (polyglossia)            loader	loadhyph-ru.tex
-(polyglossia)            synonyms	
-(polyglossia)            lefthyphenmin	2
 (polyglossia)            righthyphenmin	2
-(polyglossia)            patterns	hyph-ru.pat.txt on input line 22
+(polyglossia)            patterns	hyph-ru.pat.txt
+(polyglossia)            synonyms	 on input line 22
 Module polyglossia Info: Language russian was not yet loaded; created with id 2 on input line 22
 Package polyglossia Info: Option: Russian, numerals=arabic.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/polyglossia/babelsh.def
@@ -506,13 +524,13 @@ Package fontspec Info:
 (fontspec)             New Roman/BI:mode=base;script=latn;language=dflt;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/TimesNewRoman(1)/m/n on input line 108.
+(Font)                  OT1/lmr/m/n --> TU/TimesNewRoman(1)/m/n on input line 114.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/TimesNewRoman(1)/m/it on input line 108.
+(Font)                  OT1/lmr/m/it --> TU/TimesNewRoman(1)/m/it on input line 114.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/TimesNewRoman(1)/b/n on input line 108.
+(Font)                  OT1/lmr/bx/n --> TU/TimesNewRoman(1)/b/n on input line 114.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 108.
+(Font)              scaled to size 10.0pt on input line 114.
 
 Package fontspec Info: 
 (fontspec)             Font family 'TimesNewRoman(2)' created for font 'Times
@@ -553,10 +571,10 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip75
 \multirow@cntb=\count314
 \multirow@dima=\skip76
-\bigstrutjot=\dimen183
+\bigstrutjot=\dimen186
 ) (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen184
-\WF@size=\dimen185
+\wrapoverhang=\dimen187
+\WF@size=\dimen188
 \c@WF@wrappedlines=\count315
 \WF@box=\box66
 \WF@everypar=\toks32
@@ -580,8 +598,8 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box67
 \sift@deathcycles=\count317
-\@vwid@loff=\dimen186
-\@vwid@roff=\dimen187
+\@vwid@loff=\dimen189
+\@vwid@roff=\dimen190
 )
 \c@taburow=\count318
 \tabu@nbcols=\count319
@@ -589,15 +607,15 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@Xcol=\count321
 \tabu@alloc=\count322
 \tabu@nested=\count323
-\tabu@target=\dimen188
-\tabu@spreadtarget=\dimen189
-\tabu@naturalX=\dimen190
-\tabucolX=\dimen191
-\tabu@Xsum=\dimen192
-\extrarowdepth=\dimen193
-\abovetabulinesep=\dimen194
-\belowtabulinesep=\dimen195
-\tabustrutrule=\dimen196
+\tabu@target=\dimen191
+\tabu@spreadtarget=\dimen192
+\tabu@naturalX=\dimen193
+\tabucolX=\dimen194
+\tabu@Xsum=\dimen195
+\extrarowdepth=\dimen196
+\abovetabulinesep=\dimen197
+\belowtabulinesep=\dimen198
+\tabustrutrule=\dimen199
 \tabu@thebody=\toks34
 \tabu@footnotes=\toks35
 \tabu@box=\box68
@@ -621,15 +639,15 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@hyphenbox=\box74
 \UL@skip=\skip80
 \UL@hook=\toks36
-\UL@height=\dimen197
+\UL@height=\dimen256
 \UL@pe=\count324
-\UL@pixel=\dimen198
+\UL@pixel=\dimen257
 \ULC@box=\box75
 Package: ulem 2019/11/18
-\ULdepth=\dimen199
+\ULdepth=\dimen258
 ) (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen256
+\rotheadsize=\dimen259
 \c@nlinenum=\count325
 \TeXr@lab=\toks37
 ) (/Users/db900/Library/TinyTeX/texmf-dist/tex/lualatex/selnolig/selnolig.sty
@@ -668,7 +686,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 ) (/Users/db900/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen257
+\@linkdim=\dimen260
 \Hy@linkcounter=\count327
 \Hy@pagecounter=\count328
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
@@ -694,15 +712,15 @@ Package hyperref Info: Bookmarks ON on input line 4424.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen258
+\XeTeXLinkMargin=\dimen261
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count331
-\Field@Width=\dimen259
-\Fld@charsize=\dimen260
+\Field@Width=\dimen262
+\Fld@charsize=\dimen263
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -741,34 +759,34 @@ File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
 )) (./manuscript.aux)
 \openout1 = manuscript.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 146.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 146.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/b/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 146.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 152.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 146.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/b/n on input line 152.
 
 Package fontspec Info: 
 (fontspec)             Font family 'latinmodern-math.otf(0)' created for font
@@ -798,13 +816,13 @@ Package fontspec Info:
 (fontspec)             <->"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;"
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 146.
+(Font)              `operators' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 146.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 146.
+(Font)              `operators' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 146.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 152.
 
 Package fontspec Info: 
 (fontspec)             Font family 'latinmodern-math.otf(2)' created for font
@@ -820,13 +838,13 @@ Package fontspec Info:
 (fontspec)             <->"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex2;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 146.
+(Font)              `symbols' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 146.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 146.
+(Font)              `symbols' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 146.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 152.
 
 Package fontspec Info: 
 (fontspec)             Font family 'latinmodern-math.otf(3)' created for font
@@ -842,38 +860,38 @@ Package fontspec Info:
 (fontspec)             <->"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex3;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 146.
+(Font)              `largesymbols' in the math version `normal' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 146.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 152.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 146.
+(Font)              `largesymbols' in the math version `bold' on input line 152.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 146.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 146.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 152.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 152.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 146.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 152.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 146.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 152.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Info: Redefining \microtypecontext on input line 146.
-Package microtype Info: Applying patch `item' on input line 146.
-Package microtype Info: Applying patch `toc' on input line 146.
-Package microtype Info: Applying patch `eqnum' on input line 146.
-Package microtype Info: Applying patch `footnote' on input line 146.
-Package microtype Info: Applying patch `verbatim' on input line 146.
+LaTeX Info: Redefining \microtypecontext on input line 152.
+Package microtype Info: Applying patch `item' on input line 152.
+Package microtype Info: Applying patch `toc' on input line 152.
+Package microtype Info: Applying patch `eqnum' on input line 152.
+Package microtype Info: Applying patch `footnote' on input line 152.
+Package microtype Info: Applying patch `verbatim' on input line 152.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 146.
+LaTeX Info: Redefining \showhyphens on input line 152.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of spacing.
 Package microtype Info: No adjustment of kerning.
@@ -921,50 +939,50 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 146.
-LaTeX Info: Redefining \rmfamily on input line 146.
-LaTeX Info: Redefining \sffamily on input line 146.
-LaTeX Info: Redefining \ttfamily on input line 146.
+Package hyperref Info: Link coloring OFF on input line 152.
+LaTeX Info: Redefining \rmfamily on input line 152.
+LaTeX Info: Redefining \sffamily on input line 152.
+LaTeX Info: Redefining \ttfamily on input line 152.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 148.
+(Font)              scaled to size 17.28pt on input line 154.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 148.
+(Font)              scaled to size 12.0pt on input line 154.
 (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (/Users/db900/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 174.
+(Font)              scaled to size 10.0pt on input line 180.
 
 
 [1
 
 {/Users/db900/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 190.
+(Font)              scaled to size 14.4pt on input line 196.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 190.
+(Font)              scaled to size 14.4pt on input line 196.
 
 
 [2]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 217.
+(Font)              scaled to size 12.0pt on input line 223.
 
 
 [3]
 
 [4]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 262.
+(Font)              scaled to size 7.0pt on input line 268.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 262.
+(Font)              scaled to size 8.0pt on input line 268.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 262.
+(Font)              scaled to size 6.0pt on input line 268.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 269.
+(Font)              scaled to size 10.0pt on input line 275.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
-(Font)              scaled to size 10.0pt on input line 269.
+(Font)              scaled to size 10.0pt on input line 275.
 
 
 [5]
@@ -973,7 +991,7 @@ LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
 <outputs/corplot.pdf, id=58, 578.16pt x 578.16pt>
 File: outputs/corplot.pdf Graphic file (type pdf)
 <use outputs/corplot.pdf>
-Package luatex.def Info: outputs/corplot.pdf  used on input line 298.
+Package luatex.def Info: outputs/corplot.pdf  used on input line 304.
 (luatex.def)             Requested size: 469.75385pt x 469.75385pt.
 
 
@@ -981,12 +999,12 @@ Package luatex.def Info: outputs/corplot.pdf  used on input line 298.
 
 [8<./outputs/corplot.pdf>]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 321.
+(Font)              scaled to size 8.0pt on input line 327.
 
 
 [9]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 8.0pt on input line 406.
+(Font)              scaled to size 8.0pt on input line 412.
 
 
 [10]
@@ -1003,10 +1021,6 @@ Missing character: There is no  (U+0093) in font name:Times New Roman:mode=har
 Missing character: There is no  (U+0080) in font name:Times New Roman:mode=harf;script=latn;language=dflt;+tlig;!
 Missing character: There is no  (U+0093) in font name:Times New Roman:mode=harf;script=latn;language=dflt;+tlig;!
 ]
-warning  (pdf backend): ignoring duplicate destination with the name 'table.1'
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
-(Font)              scaled to size 8.0pt on input line 635.
-
 
 [15
 Missing character: There is no  (U+0080) in font name:Times New Roman:mode=harf;script=latn;language=dflt;+tlig;!
@@ -1014,14 +1028,26 @@ Missing character: There is no  (U+0093) in font name:Times New Roman:mode=har
 Missing character: There is no  (U+0080) in font name:Times New Roman:mode=harf;script=latn;language=dflt;+tlig;!
 Missing character: There is no  (U+0093) in font name:Times New Roman:mode=harf;script=latn;language=dflt;+tlig;!
 ]
-warning  (pdf backend): ignoring duplicate destination with the name 'table.2'
+warning  (pdf backend): ignoring duplicate destination with the name 'table.1'
 
 
 [16]
+warning  (pdf backend): ignoring duplicate destination with the name 'table.2'
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
+(Font)              scaled to size 8.0pt on input line 708.
+
 warning  (pdf backend): ignoring duplicate destination with the name 'table.3'
 
 
-[17] (./manuscript.aux)
+[17
+
+
+]
+
+[18]
+Lua-only attribute luaul1 = 5
+
+[19] (./manuscript.aux)
  ***********
 LaTeX2e <2024-06-01>
 L3 programming layer <2024-05-27>
@@ -1029,19 +1055,19 @@ L3 programming layer <2024-05-27>
 )
 
 Here is how much of LuaTeX's memory you used:
- 23312 strings out of 475931
- 156366,1977958 words of node,token memory allocated
- 756 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 1 local_par, 8 glue, 4 kern, 1 penalty, 1 margin_kern, 4 glyph, 21 attribute, 67 glue_spec, 21 attribute_list, 1 write, 1 user_defined, 8 pdf_action nodes
-   avail lists: 1:3,2:1616,3:430,4:181,5:621,6:80,7:13585,8:64,9:1502,10:33,11:1251,12:2
- 45371 multiletter control sequences out of 65536+600000
- 91 fonts using 46009043 bytes
- 90i,13n,102p,2472b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 23458 strings out of 475931
+ 195466,1977958 words of node,token memory allocated
+ 854 words of node memory still in use:
+   7 hlist, 2 vlist, 3 rule, 1 local_par, 9 glue, 4 kern, 1 penalty, 1 margin_kern, 4 glyph, 55 attribute, 67 glue_spec, 28 attribute_list, 1 write, 1 user_defined, 8 pdf_action nodes
+   avail lists: 1:3,2:20080,3:432,4:73,5:621,6:80,7:13584,8:64,9:3607,10:33,11:1251,12:2
+ 45502 multiletter control sequences out of 65536+600000
+ 91 fonts using 46008663 bytes
+ 90i,14n,102p,2472b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/db900/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman Bold Italic.ttf></System/Library/Fonts/Supplemental/Times New Roman Bold.ttf></System/Library/Fonts/Supplemental/Times New Roman Italic.ttf></Users/db900/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></System/Library/Fonts/Supplemental/Times New Roman.ttf>
-Output written on manuscript.pdf (17 pages, 417657 bytes).
+Output written on manuscript.pdf (19 pages, 423583 bytes).
 
-PDF statistics: 351 PDF objects out of 1000 (max. 8388607)
- 308 compressed objects within 4 object streams
- 93 named destinations out of 1000 (max. 131072)
+PDF statistics: 365 PDF objects out of 1000 (max. 8388607)
+ 320 compressed objects within 4 object streams
+ 97 named destinations out of 1000 (max. 131072)
  129 words of extra memory for PDF output out of 10000 (max. 100000000)
 
